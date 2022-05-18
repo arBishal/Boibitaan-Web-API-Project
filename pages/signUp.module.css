@@ -13,9 +13,10 @@
   flex-direction: column;
   border: solid 1px #eeeeee;
   border-radius: 10px;
-  max-width: 50%;
-  min-width: 300px;
-  padding: 20px;
+  min-width: 400px;
+  width: 25%;
+  padding: 40px;
+  align-items: center;
 }
 
 .signUpInput {
@@ -23,7 +24,5 @@
   flex-direction: column;
   align-content: left;
   margin: 20px;
-}
-
-.input {
+  width: 100%;
 }

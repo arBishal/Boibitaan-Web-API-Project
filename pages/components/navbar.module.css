@@ -5,8 +5,18 @@
   width: 100%;
   position: fixed;
   top: 0;
-  border-bottom: 0.5px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   z-index: 10;
+}
+
+.navbarRignt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: red;
+  color: red;
+  margin-left: 100px;
 }

@@ -1,0 +1,77 @@
+.profileBody {
+  margin-top: 90px;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileForm {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #eeeeee;
+  border-radius: 0px 0px 10px 10px;
+  min-width: 400px;
+  width: 25%;
+  padding: 20px 40px 40px 40px;
+  align-items: center;
+}
+
+.profileHeader {
+  margin-bottom: 0px;
+  width: 25%;
+  min-width: 400px;
+  height: 75px;
+  border: 1px solid #eeeeee;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(#1890ff, #1890ff);
+  position: relative;
+}
+
+.myImage {
+  margin-left: 0px;
+  position: relative;
+  top: -60px;
+  border: 5px solid #fafafa;
+  border-radius: 100px;
+  z-index: 1;
+}
+.myImage img {
+  border-radius: 100px;
+}
+
+.profileInfoCard {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: auto;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  position: relative;
+  top: -137px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.textTop {
+  font-size: 16px;
+}
+
+.inputStyle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+}

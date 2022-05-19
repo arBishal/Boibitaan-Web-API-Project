@@ -12,6 +12,8 @@ const getButtonClassName = (theme: string) => {
   switch (theme) {
     case "light":
       return "button-light";
+    case "invisible":
+      return "button-invisible";
     default:
       return "button-dark";
   }

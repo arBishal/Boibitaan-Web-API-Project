@@ -16,6 +16,23 @@
   border: 1.5px solid #1169ba;
 }
 
+.button-invisible {
+  background: transparent;
+  color: black;
+  padding: 5px 15px;
+  height: auto;
+  text-align: center;
+  text-justify: center;
+  font-size: 16px;
+  border: transparent;
+  transition-duration: 0.2s;
+}
+.button-invisible:hover {
+  background-color: transparent;
+  color: #1890ff;
+  border: transparent;
+}
+
 .button-dark {
   background: #1890ff;
   color: white;

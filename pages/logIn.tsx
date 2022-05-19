@@ -18,37 +18,16 @@ function LogIn() {
             width="125vh"
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "10px",
-            width: "100%",
-          }}
-        >
+        <div className={signUpStyle.signUpInput}>
           <p style={{ marginBottom: "3px" }}> ই-মেইল </p>
-          <InputText
-            className={signUpStyle.inputStyle}
-            placeholder="ই-মেইল লিখুন"
-          ></InputText>
+          <InputText placeholder="ই-মেইল লিখুন"></InputText>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "10px",
-            width: "100%",
-          }}
-        >
+        <div className={signUpStyle.signUpInput}>
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড </p>
-          <InputPassword
-            type="required"
-            className={signUpStyle.inputStyle}
-            placeholder="পাসওয়ার্ড দিন"
-          ></InputPassword>
+          <InputPassword placeholder="পাসওয়ার্ড দিন"></InputPassword>
         </div>
         <Button style={{ marginTop: "20px", marginBottom: "-15px" }}>
-          Log In
+          লগ ইন
         </Button>
       </div>
     </div>

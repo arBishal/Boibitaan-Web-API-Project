@@ -3,6 +3,17 @@
   align-items: "center";
   justify-content: "center";
   margin-top: 65px;
-  background-color: whitesmoke;
+  background-color: white;
   height: 100vh;
+  top: 100px;
+}
+
+.sectionHeader {
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 100px;
 }

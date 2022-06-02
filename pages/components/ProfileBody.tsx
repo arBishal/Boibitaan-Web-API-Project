@@ -6,7 +6,6 @@ import ProfileInfoCard from "./ProfileInfoCard";
 const ProfileBody = () => {
   return (
     <div className={ProfileBodyStyle.profileBody}>
-      <div className={ProfileBodyStyle.profileHeader}></div>
       <ProfileInfoCard />
     </div>
   );

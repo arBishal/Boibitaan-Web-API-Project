@@ -1,5 +1,5 @@
 import Image from "next/image";
-import navlogo from "../../public/image/logo.png";
+import navlogo from "../../public/logo/logo.png";
 import navStyle from "./navbar.module.css";
 import { Row, Col, Input } from "antd";
 import NavbarRight from "./NavbarRight";

@@ -1,0 +1,28 @@
+.itemImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 10%;
+  height: auto;
+  border: 1px solid #eeeeee;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  max-width: 10%;
+  height: auto;
+  border-bottom: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.infoText {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}

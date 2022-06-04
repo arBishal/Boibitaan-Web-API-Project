@@ -14,7 +14,9 @@ const ItemCard = () => {
         <p className={ItemCardStyle.infoText}>নাম: কবিতাসমগ্র</p>
         <p className={ItemCardStyle.infoText}>লেখক: জীবনানন্দ দাশ</p>
         <p className={ItemCardStyle.infoText}>মূল্য: ৩৭৫৳</p>
-        <Button theme="dark" />
+        <Button theme="dark" style={{ marginTop: "5px", marginBottom: "10px" }}>
+          কিনুন
+        </Button>
       </div>
     </div>
   );

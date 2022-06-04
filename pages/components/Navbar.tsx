@@ -11,8 +11,7 @@ const Navbar = () => {
   return (
     <div className={navStyle.navbar}>
       <Row justify="center" align="middle" style={{ width: "100%" }}>
-        <Col span={2}></Col>
-        <Col span={6}>
+        <Col span={5}>
           <div style={{ paddingTop: "15px", paddingBottom: "15px" }}>
             <Image
               src={navlogo}
@@ -30,7 +29,7 @@ const Navbar = () => {
           />
         </Col>
         <Col
-          span={6}
+          span={5}
           style={{
             display: "flex",
             alignItems: "center",
@@ -39,7 +38,6 @@ const Navbar = () => {
         >
           <NavbarRight />
         </Col>
-        <Col span={2}></Col>
       </Row>
     </div>
   );

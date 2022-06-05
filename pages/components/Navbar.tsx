@@ -23,7 +23,7 @@ const Navbar = () => {
         </Col>
         <Col span={8}>
           <Search
-            placeholder="input search text"
+            placeholder="এখানে সার্চ করুন"
             onSearch={onSearch}
             enterButton
           />

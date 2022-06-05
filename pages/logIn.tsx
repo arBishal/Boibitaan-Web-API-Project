@@ -3,7 +3,7 @@ import signUpStyle from "./signUp.module.css";
 import InputText from "./src/ui-custom-components/InputText";
 import InputPassword from "./src/ui-custom-components/InputPassword";
 import Image from "next/image";
-import landinglogo from "../public/image/logolanding.png";
+import landinglogo from "../public/logo/logolanding.png";
 import Button from "./src/ui-custom-components/Button";
 
 function LogIn() {

@@ -9,6 +9,7 @@
   font-size: 16px;
   border-radius: 5px;
   transition-duration: 0.2s;
+  font-size: 14px;
 }
 .button-light:hover {
   background-color: #1169ba;
@@ -26,6 +27,7 @@
   font-size: 16px;
   border: transparent;
   transition-duration: 0.2s;
+  box-shadow: none;
 }
 .button-invisible:hover {
   background-color: transparent;
@@ -42,7 +44,7 @@
   width: auto;
   text-align: center;
   text-justify: center;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
   transition-duration: 0.2s;
 }

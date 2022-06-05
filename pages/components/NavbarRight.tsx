@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import Button from "../src/ui-custom-components/Button";
-import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  ShoppingCartOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import iconStyle from "./icon.module.css";
 import navStyle from "./navbar.module.css";
 
 const NavbarRight = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   return loggedIn ? (
     <div className={navStyle.navbarRight}>
       <ShoppingCartOutlined className={iconStyle.icon} />
       <UserOutlined className={iconStyle.icon} />
+      <LogoutOutlined className={iconStyle.icon} />
     </div>
   ) : (
     <div className={navStyle.navbarRight}>

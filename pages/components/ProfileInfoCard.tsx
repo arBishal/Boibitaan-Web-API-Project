@@ -33,7 +33,7 @@ const ProfileInfoCard = () => {
           <p style={{ marginBottom: "3px" }}> পূর্ণ ঠিকানা </p>
           <InputTextArea
             placeholder={address}
-            autoSize={{ minRows: 2, maxRows: 6 }}
+            autoSize={{ minRows: 3, maxRows: 6 }}
           ></InputTextArea>
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>

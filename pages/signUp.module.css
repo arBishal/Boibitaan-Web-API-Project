@@ -1,0 +1,28 @@
+.signUpPage {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signUpForm {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #eeeeee;
+  border-radius: 10px;
+  min-width: 400px;
+  width: 25%;
+  padding: 40px;
+  align-items: center;
+}
+
+.signUpInput {
+  display: flex;
+  flex-direction: column;
+  align-content: left;
+  margin-top: 10px;
+  width: 100%;
+}

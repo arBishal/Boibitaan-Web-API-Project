@@ -1,0 +1,28 @@
+.profileBody {
+  margin-top: 90px;
+  background-color: white;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileForm {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #eeeeee;
+  border-radius: 10px;
+  min-width: 400px;
+  width: 33%;
+  padding: 20px 40px 40px 40px;
+  align-items: center;
+}
+
+.inputStyle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+}

@@ -1,0 +1,55 @@
+.button-light {
+  background: transparent;
+  border: 1.5px solid #1169ba;
+  color: #1169ba;
+  padding: 5px 15px;
+  height: auto;
+  text-align: center;
+  text-justify: center;
+  font-size: 16px;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+  font-size: 14px;
+}
+.button-light:hover {
+  background-color: #1169ba;
+  color: white;
+  border: 1.5px solid #1169ba;
+}
+
+.button-invisible {
+  background: transparent;
+  color: black;
+  padding: 5px 15px;
+  height: auto;
+  text-align: center;
+  text-justify: center;
+  font-size: 16px;
+  border: transparent;
+  transition-duration: 0.2s;
+  box-shadow: none;
+}
+.button-invisible:hover {
+  background-color: transparent;
+  color: #1890ff;
+  border: transparent;
+}
+
+.button-dark {
+  background: #1890ff;
+  color: white;
+  border: 1.5px solid #1890ff;
+  padding: 5px 15px;
+  height: auto;
+  width: auto;
+  text-align: center;
+  text-justify: center;
+  font-size: 14px;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+}
+.button-dark:hover {
+  background-color: white;
+  color: #1890ff;
+  border: 1.5px solid #1890ff;
+}

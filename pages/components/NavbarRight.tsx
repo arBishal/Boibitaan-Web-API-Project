@@ -9,7 +9,7 @@ import iconStyle from "./icon.module.css";
 import navStyle from "./navbar.module.css";
 
 const NavbarRight = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   return loggedIn ? (
     <div className={navStyle.navbarRight}>
       <ShoppingCartOutlined className={iconStyle.icon} />

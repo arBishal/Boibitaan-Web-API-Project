@@ -11,8 +11,9 @@ const Navbar = () => {
   return (
     <div className={navStyle.navbar}>
       <Row justify="center" align="middle" style={{ width: "100%" }}>
-        <Col span={8}>
-          <div style={{ padding: "15px", marginLeft: "85px" }}>
+        <Col span={2}></Col>
+        <Col span={6}>
+          <div style={{ paddingTop: "15px", paddingBottom: "15px" }}>
             <Image
               src={navlogo}
               alt="boibitaanlogo"
@@ -28,9 +29,17 @@ const Navbar = () => {
             enterButton
           />
         </Col>
-        <Col span={8} className={navStyle.navbarRight}>
+        <Col
+          span={6}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
           <NavbarRight />
         </Col>
+        <Col span={2}></Col>
       </Row>
     </div>
   );

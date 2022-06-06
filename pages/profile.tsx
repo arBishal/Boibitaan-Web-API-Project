@@ -1,12 +1,16 @@
 import React from "react";
+import Navbar from "./components/Navbar";
 import ProfileBody from "./components/ProfileBody";
-import Page from "./components/page";
+import profileStyle from "./components/profileBody.module.css";
+import Footer from "./components/Footer";
 
 const Profile = () => {
   return (
-    <Page title="প্রোফাইল">
+    <div>
+      <Navbar />
       <ProfileBody />
-    </Page>
+      <Footer />
+    </div>
   );
 };
 

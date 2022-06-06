@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import ProfileInfoCardStyle from "./profileBody.module.css";
 import InputText from "../src/ui-custom-components/InputText";
+import InputTextArea from "../src/ui-custom-components/InputTextArea";
 import Button from "../src/ui-custom-components/Button";
 
 const ProfileInfoCard = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [contact, setContact] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [bankId, setBankId] = useState<string>("");
   const [secretKey, setSecretKey] = useState<string>("");
@@ -26,6 +28,13 @@ const ProfileInfoCard = () => {
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> ফোন নাম্বার </p>
           <InputText placeholder={contact}></InputText>
+        </div>
+        <div className={ProfileInfoCardStyle.inputStyle}>
+          <p style={{ marginBottom: "3px" }}> পূর্ণ ঠিকানা </p>
+          <InputTextArea
+            placeholder={address}
+            autoSize={{ minRows: 2, maxRows: 6 }}
+          ></InputTextArea>
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> ব্যাংক অ্যাকাউন্ট </p>

@@ -13,10 +13,6 @@
 
 .navbarRignt {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  background-color: red;
-  color: red;
-  margin-left: 100px;
 }

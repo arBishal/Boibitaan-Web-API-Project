@@ -5,10 +5,11 @@ type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req.body);
+  const {name, email, passHash, phone} = req.body;
+  console.log(name, passHash);
   res.status(200).json({ name: 'John Doe' })
 }

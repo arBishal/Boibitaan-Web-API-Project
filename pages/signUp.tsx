@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import signUpStyle from "./signUp.module.css";
 import InputText from "./src/ui-custom-components/InputText";
 import InputPassword from "./src/ui-custom-components/InputPassword";
@@ -7,49 +7,63 @@ import landinglogo from "../public/logo/logolanding.png";
 import Button from "./src/ui-custom-components/Button";
 import { sha256 } from "js-sha256";
 
+interface SignUpInfoType {
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  "password-again": string;
+}
+
 const required = ["email", "name", "password", "phone"];
 
 function SignUp() {
-  const [data, setData] = useState({});
+  const [signUpInfo, setSignUpInfo] = useState<Partial<SignUpInfoType>>({});
 
   function handleChange(e) {
     const { id, value } = e.target;
-    setData((prev) => ({ ...prev, [id]: value }));
+    setSignUpInfo((prev) => {
+      return { ...prev, [id]: value };
+    });
   }
 
-  function checkConstrains(data) {
+  const checkConstrains = useCallback((signUpInfo: Partial<SignUpInfoType>) => {
+    var result: { verdict: boolean; message: string };
+
     required.forEach((item) => {
-      if (data[item] === undefined || data[item] === "") {
-        return false;
+      if (signUpInfo[item] === undefined || signUpInfo[item] === "") {
+        result = { verdict: false, message: "Please fill up all the field!" };
       }
     });
-    if (
-      data.password !== data?.["password-again"] ||
-      /^[0-9]+$/.test(data.phone) == false
-    )
-      return false;
-    return true;
-  }
+    if (result) return result;
+    if (/^[0-9]+$/.test(signUpInfo.phone) == false)
+      return { verdict: false, message: "Invalid Phone Number!" };
+    else if (signUpInfo.password !== signUpInfo["password-again"])
+      return { verdict: false, message: "Password didn't matched!" };
+    else result = { verdict: true, message: "Constrain matched!" };
+    return result;
+  }, []);
 
-  async function handleClick(e) {
-    const result = checkConstrains(data);
-    if (result) {
+  const submit = useCallback(async (signUpInfo: Partial<SignUpInfoType>) => {
+    console.log(signUpInfo);
+    const result = checkConstrains(signUpInfo);
+    if (result.verdict) {
       const response = await fetch("/api/signUp", {
         method: "POST",
         body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          passHash: sha256(data.password),
+          name: signUpInfo.name,
+          email: signUpInfo.email,
+          phone: signUpInfo.phone,
+          passHash: sha256(signUpInfo.password),
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
     } else {
-      alert("Please fill up the form properly!");
+      alert(result.message);
     }
-  }
+  }, []);
 
   return (
     <div className={signUpStyle.signUpPage}>
@@ -65,20 +79,22 @@ function SignUp() {
         <div className={signUpStyle.signUpInput}>
           <p style={{ marginBottom: "3px" }}> পূর্ণ নাম </p>
           <InputText
+            status={signUpInfo?.name?.length === 0 && "error"}
             id="name"
             type="required"
             placeholder="পূর্ণ নাম লিখুন"
-            value={data?.name}
+            value={signUpInfo?.name}
             onChange={handleChange}
           />
         </div>
         <div className={signUpStyle.signUpInput}>
           <p style={{ marginBottom: "3px" }}> ফোন নাম্বার </p>
           <InputText
+            status={signUpInfo?.phone?.length === 0 && "error"}
             type="required"
             placeholder="ফোন নাম্বার লিখুন"
             id="phone"
-            value={data?.phone}
+            value={signUpInfo?.phone}
             onChange={handleChange}
           />
         </div>
@@ -87,7 +103,8 @@ function SignUp() {
           <InputText
             id="email"
             type="required"
-            value={data?.email}
+            status={signUpInfo?.email?.length === 0 && "error"}
+            value={signUpInfo?.email}
             placeholder="ই-মেইল লিখুন"
             onChange={handleChange}
           />
@@ -97,6 +114,7 @@ function SignUp() {
           <InputPassword
             id="password"
             type="required"
+            status={signUpInfo?.password?.length === 0 && "error"}
             placeholder="পাসওয়ার্ড দিন"
             onChange={handleChange}
           />
@@ -105,14 +123,16 @@ function SignUp() {
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড নিশ্চিত করুন </p>
           <InputPassword
             type="required"
+            status={signUpInfo?.password !== signUpInfo?.["password-again"] && "error"}
             placeholder="পুনরায় পাসওয়ার্ড দিন"
             id="password-again"
             onChange={handleChange}
+            onPressEnter={() => submit(signUpInfo)}
           />
         </div>
         <Button
           style={{ marginTop: "20px", marginBottom: "-15px" }}
-          onClick={handleClick}
+          onClick={() => submit(signUpInfo)}
         >
           সাইন আপ
         </Button>

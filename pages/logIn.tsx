@@ -5,8 +5,10 @@ import InputPassword from "./src/ui-custom-components/InputPassword";
 import Image from "next/image";
 import landinglogo from "../public/logo/logolanding.png";
 import Button from "./src/ui-custom-components/Button";
+import { useRouter } from "next/router";
 
 function LogIn() {
+  const router = useRouter();
   return (
     <div className={signUpStyle.signUpPage}>
       <div className={signUpStyle.signUpForm}>
@@ -26,7 +28,10 @@ function LogIn() {
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড </p>
           <InputPassword placeholder="পাসওয়ার্ড দিন"></InputPassword>
         </div>
-        <Button style={{ marginTop: "20px", marginBottom: "-15px" }}>
+        <Button
+          style={{ marginTop: "20px", marginBottom: "-15px" }}
+          onClick={() => router.push("/home")}
+        >
           লগ ইন
         </Button>
       </div>

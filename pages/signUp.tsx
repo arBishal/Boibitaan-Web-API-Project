@@ -45,7 +45,6 @@ function SignUp() {
   }, []);
 
   const submit = useCallback(async (signUpInfo: Partial<SignUpInfoType>) => {
-    console.log(signUpInfo);
     const result = checkConstrains(signUpInfo);
     if (result.verdict) {
       const response = await fetch("/api/signUp", {

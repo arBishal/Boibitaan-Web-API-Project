@@ -53,12 +53,16 @@ function SignUp() {
           name: signUpInfo.name,
           email: signUpInfo.email,
           phone: signUpInfo.phone,
+          //@ts-ignore
           passHash: sha256(signUpInfo.password),
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
+      if (response.status === 200) {
+        console.log(await response.json());
+      }
     } else {
       alert(result.message);
     }
@@ -122,7 +126,9 @@ function SignUp() {
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড নিশ্চিত করুন </p>
           <InputPassword
             type="required"
-            status={signUpInfo?.password !== signUpInfo?.["password-again"] && "error"}
+            status={
+              signUpInfo?.password !== signUpInfo?.["password-again"] && "error"
+            }
             placeholder="পুনরায় পাসওয়ার্ড দিন"
             id="password-again"
             onChange={handleChange}

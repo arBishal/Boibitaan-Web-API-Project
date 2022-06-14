@@ -21,7 +21,7 @@ export default async function handler(
     if (dbResponse?.data.insert_user.affected_rows === 0) {
       res.status(200).json({ verdict: false, message: "Use different Email!" });
     } else {
-      res.status(200).json({ verdict: false, message: "Sign Up successfull" });
+      res.status(200).json({ verdict: true, message: "Sign Up successfull" });
     }
   } catch (err) {
     console.log(err);

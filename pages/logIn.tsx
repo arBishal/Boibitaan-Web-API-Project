@@ -29,6 +29,7 @@ function LogIn() {
         const { verdict, token, message } = res.data;
         if (verdict) {
           localStorage.setItem("token", token);
+          router.push("/home");
         } else {
           alert(message);
         }

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../src/ui-custom-components/Button";
-import InputText from "../src/ui-custom-components/InputText";
-import Modal from "../src/ui-custom-components/Modal";
+import Button from "../ui-base-components/Button";
+import InputText from "../ui-base-components/InputText";
+import Modal from "../ui-base-components/Modal";
 
 import BuyBookModalStyle from "./buyBookModal.module.css";
 

@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import HomeBody from "./components/HomeBody";
-import Page from "./components/page";
-import { getToken } from "next-auth/jwt";
-import jwt from "jsonwebtoken";
+import HomeBody from "../src/components/HomeBody";
+import Page from "../src/components/page";
 
 function Home() {
   return (
@@ -11,5 +9,5 @@ function Home() {
     </Page>
   );
 }
-Home.auth = true;
+Home.auth = false;
 export default Home;

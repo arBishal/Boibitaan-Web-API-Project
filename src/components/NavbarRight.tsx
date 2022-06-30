@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../src/ui-custom-components/Button";
+import Button from "../ui-base-components/Button";
 import {
   UserOutlined,
   ShoppingCartOutlined,

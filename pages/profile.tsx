@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileBody from "./components/ProfileBody";
-import Page from "./components/page";
+import ProfileBody from "../src/components/ProfileBody";
+import Page from "../src/components/page";
 
 const Profile = () => {
   return (

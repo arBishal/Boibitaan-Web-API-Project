@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import signUpStyle from "../styles/signUp.module.css";
+import authStyle from "../styles/auth.module.css";
 import InputText from "../src/ui-base-components/InputText";
 import InputPassword from "../src/ui-base-components/InputPassword";
 import Image from "next/image";
@@ -8,10 +8,20 @@ import Button from "../src/ui-base-components/Button";
 import axios from "axios";
 import { sha256 } from "js-sha256";
 import Router from "next/router";
+import Loading from "../src/components/Loading";
 
 function LogIn() {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  if (isLoading) {
+    return (
+      <div className={authStyle.authPage}>
+        <Loading />
+      </div>
+    );
+  }
 
   const handleSubmit = async () => {
     if (email === undefined || email === "") {
@@ -19,6 +29,7 @@ function LogIn() {
     } else if (password === undefined || password === "") {
       alert("Please provide a password!");
     } else {
+      setIsLoading((prev) => true);
       const res = await axios.post("/api/login", {
         email,
         passHash: sha256(password),
@@ -32,12 +43,13 @@ function LogIn() {
           alert(message);
         }
       }
+      setIsLoading((prev) => false);
     }
   };
 
   return (
-    <div className={signUpStyle.signUpPage}>
-      <div className={signUpStyle.signUpForm}>
+    <div className={authStyle.authPage}>
+      <div className={authStyle.authForm}>
         <div style={{ marginTop: "-15px" }}>
           <Image
             src={landinglogo}
@@ -46,7 +58,7 @@ function LogIn() {
             width="125vh"
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> ই-মেইল </p>
           <InputText
             id="email"
@@ -57,7 +69,7 @@ function LogIn() {
             }}
           ></InputText>
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড </p>
           <InputPassword
             id="password"

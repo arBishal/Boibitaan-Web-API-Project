@@ -1,4 +1,4 @@
-.signUpPage {
+.authPage {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   height: 100vh;
 }
 
-.signUpForm {
+.authForm {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.signUpInput {
+.authInput {
   display: flex;
   flex-direction: column;
   align-content: left;

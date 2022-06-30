@@ -1,6 +1,8 @@
 import { SessionProvider, useSession, signIn } from "next-auth/react";
 import Router from "next/router";
 import { useEffect } from "react";
+import Loading from "../src/components/Loading";
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -32,5 +34,5 @@ function Auth({ children }: { children: any }) {
 
   // Session is being fetched, or no user.
   // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
+  return <Loading />;
 }

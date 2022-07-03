@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const findUserByEmail = (
+export const upsertUserByEmail = (
   email: string,
   name: string,
   passHash: string,

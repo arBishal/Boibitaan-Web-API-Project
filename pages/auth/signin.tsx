@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import authStyle from "../styles/auth.module.css";
-import InputText from "../src/ui-base-components/InputText";
-import InputPassword from "../src/ui-base-components/InputPassword";
+import authStyle from "../../styles/auth.module.css";
+import InputText from "../../src/ui-base-components/InputText";
+import InputPassword from "../../src/ui-base-components/InputPassword";
 import Image from "next/image";
-import landinglogo from "../public/logo/logolanding.png";
-import Button from "../src/ui-base-components/Button";
-import axios from "axios";
+import landinglogo from "../../public/logo/logolanding.png";
+import Button from "../../src/ui-base-components/Button";
 import { sha256 } from "js-sha256";
+import Loading from "../../src/components/Loading";
+import { getProviders, signIn } from "next-auth/react";
 import Router from "next/router";
-import Loading from "../src/components/Loading";
 
-function LogIn() {
+function SignIn({ providers }) {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,18 +30,17 @@ function LogIn() {
       alert("Please provide a password!");
     } else {
       setIsLoading((prev) => true);
-      const res = await axios.post("/api/login", {
+      const res = await signIn(providers.credentials.id, {
         email,
         passHash: sha256(password),
+        redirect: false,
+        callbackUrl: "/home",
       });
-      if (res.status === 200) {
-        const { verdict, token, message } = res.data;
-        if (verdict) {
-          localStorage.setItem("token", token);
-          Router.push("/home");
-        } else {
-          alert(message);
-        }
+
+      if (res?.ok) {
+        Router.push("/home");
+      } else {
+        alert(res?.error);
       }
       setIsLoading((prev) => false);
     }
@@ -64,7 +63,6 @@ function LogIn() {
             id="email"
             placeholder="ই-মেইল লিখুন"
             onChange={(e) => {
-              console.log(e.target.value);
               setEmail(e.target.value);
             }}
           ></InputText>
@@ -88,4 +86,20 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export async function getServerSideProps(context: any) {
+  // const session = await getSession(context);
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/",
+  //     },
+  //   };
+  // }
+  return {
+    props: {
+      providers: await getProviders(),
+    },
+  };
+}
+export default SignIn;

@@ -9,30 +9,37 @@ import iconStyle from "./icon.module.css";
 import navStyle from "./navbar.module.css";
 import { useRouter } from "next/router";
 import { logOut } from "../../lib/auth-functionality";
+import { useSession } from "next-auth/react";
 
 const NavbarRight = () => {
   const router = useRouter();
-
-  const [loggedIn, setLoggedIn] = useState(true);
-  return loggedIn ? (
+  const { data: session, status } = useSession();
+  if (status === "loading") {
+    return (
+      <div className={navStyle.navbarRight}>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
+  return status === "unauthenticated" ? (
+    <div className={navStyle.navbarRight}>
+      <Button theme="invisible" onClick={() => router.push("/auth/signin")}>
+        {" "}
+        লগ ইন{" "}
+      </Button>
+      <Button theme="invisible" onClick={() => router.push("/auth/signUp")}>
+        {" "}
+        সাইন আপ{" "}
+      </Button>
+    </div>
+  ) : (
     <div className={navStyle.navbarRight}>
       <ShoppingCartOutlined className={iconStyle.icon} />
       <UserOutlined
         className={iconStyle.icon}
         onClick={() => router.push("/profile")}
       />
-      <LogoutOutlined className={iconStyle.icon} onClick={logOut}/>
-    </div>
-  ) : (
-    <div className={navStyle.navbarRight}>
-      <Button theme="invisible" onClick={() => router.push("/logIn")}>
-        {" "}
-        লগ ইন{" "}
-      </Button>
-      <Button theme="invisible" onClick={() => router.push("/signUp")}>
-        {" "}
-        সাইন আপ{" "}
-      </Button>
+      <LogoutOutlined className={iconStyle.icon} onClick={logOut} />
     </div>
   );
 };

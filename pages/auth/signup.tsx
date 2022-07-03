@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import authStyle from "../styles/auth.module.css";
-import InputText from "../src/ui-base-components/InputText";
-import InputPassword from "../src/ui-base-components/InputPassword";
+import authStyle from "../../styles/auth.module.css";
+import InputText from "../../src/ui-base-components/InputText";
+import InputPassword from "../../src/ui-base-components/InputPassword";
 import Image from "next/image";
-import landinglogo from "../public/logo/logolanding.png";
-import Button from "../src/ui-base-components/Button";
+import landinglogo from "../../public/logo/logolanding.png";
+import Button from "../../src/ui-base-components/Button";
 import { sha256 } from "js-sha256";
 
 interface SignUpInfoType {

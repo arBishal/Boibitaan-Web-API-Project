@@ -6,7 +6,7 @@ import client from "./apollo-client";
 
 // Fast logout
 export const logOut = async () => {
-  const res = await signOut({ redirect: false, callbackUrl: "/home" });
+  const res = await signOut({ redirect: false, callbackUrl: "/" });
   Router.push(res.url);
 };
 

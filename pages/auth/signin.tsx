@@ -34,11 +34,11 @@ function SignIn({ providers }) {
         email,
         passHash: sha256(password),
         redirect: false,
-        callbackUrl: "/home",
+        callbackUrl: "/",
       });
 
       if (res?.ok) {
-        Router.push("/home");
+        Router.push("/");
       } else {
         alert(res?.error);
       }

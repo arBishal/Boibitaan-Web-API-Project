@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
-import signUpStyle from "./signUp.module.css";
-import InputText from "./src/ui-custom-components/InputText";
-import InputPassword from "./src/ui-custom-components/InputPassword";
+import authStyle from "../styles/auth.module.css";
+import InputText from "../src/ui-base-components/InputText";
+import InputPassword from "../src/ui-base-components/InputPassword";
 import Image from "next/image";
 import landinglogo from "../public/logo/logolanding.png";
-import Button from "./src/ui-custom-components/Button";
+import Button from "../src/ui-base-components/Button";
 import { sha256 } from "js-sha256";
 
 interface SignUpInfoType {
@@ -69,8 +69,8 @@ function SignUp() {
   }, []);
 
   return (
-    <div className={signUpStyle.signUpPage}>
-      <div className={signUpStyle.signUpForm}>
+    <div className={authStyle.authPage}>
+      <div className={authStyle.authForm}>
         <div style={{ marginTop: "-15px" }}>
           <Image
             src={landinglogo}
@@ -79,7 +79,7 @@ function SignUp() {
             width="125vh"
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> পূর্ণ নাম </p>
           <InputText
             status={signUpInfo?.name?.length === 0 && "error"}
@@ -90,7 +90,7 @@ function SignUp() {
             onChange={handleChange}
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> ফোন নাম্বার </p>
           <InputText
             status={signUpInfo?.phone?.length === 0 && "error"}
@@ -101,7 +101,7 @@ function SignUp() {
             onChange={handleChange}
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> ই-মেইল </p>
           <InputText
             id="email"
@@ -112,7 +112,7 @@ function SignUp() {
             onChange={handleChange}
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড </p>
           <InputPassword
             id="password"
@@ -122,7 +122,7 @@ function SignUp() {
             onChange={handleChange}
           />
         </div>
-        <div className={signUpStyle.signUpInput}>
+        <div className={authStyle.authInput}>
           <p style={{ marginBottom: "3px" }}> পাসওয়ার্ড নিশ্চিত করুন </p>
           <InputPassword
             type="required"

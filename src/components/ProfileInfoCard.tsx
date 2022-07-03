@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ProfileInfoCardStyle from "./profileBody.module.css";
-import InputText from "../src/ui-custom-components/InputText";
-import InputTextArea from "../src/ui-custom-components/InputTextArea";
-import Button from "../src/ui-custom-components/Button";
+import InputText from "../ui-base-components/InputText";
+import InputTextArea from "../ui-base-components/InputTextArea";
+import Button from "../ui-base-components/Button";
 
 const ProfileInfoCard = () => {
   const [name, setName] = useState<string>("");

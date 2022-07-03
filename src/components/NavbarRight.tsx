@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../src/ui-custom-components/Button";
+import Button from "../ui-base-components/Button";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -8,6 +8,7 @@ import {
 import iconStyle from "./icon.module.css";
 import navStyle from "./navbar.module.css";
 import { useRouter } from "next/router";
+import { logOut } from "../../lib/auth-functionality";
 
 const NavbarRight = () => {
   const router = useRouter();
@@ -16,8 +17,11 @@ const NavbarRight = () => {
   return loggedIn ? (
     <div className={navStyle.navbarRight}>
       <ShoppingCartOutlined className={iconStyle.icon} />
-      <UserOutlined className={iconStyle.icon} onClick={()=> router.push("/profile")}/>
-      <LogoutOutlined className={iconStyle.icon} />
+      <UserOutlined
+        className={iconStyle.icon}
+        onClick={() => router.push("/profile")}
+      />
+      <LogoutOutlined className={iconStyle.icon} onClick={logOut}/>
     </div>
   ) : (
     <div className={navStyle.navbarRight}>

@@ -27,7 +27,7 @@ const NavbarRight = () => {
         {" "}
         লগ ইন{" "}
       </Button>
-      <Button theme="invisible" onClick={() => router.push("/auth/signUp")}>
+      <Button theme="invisible" onClick={() => router.push("/auth/signup")}>
         {" "}
         সাইন আপ{" "}
       </Button>

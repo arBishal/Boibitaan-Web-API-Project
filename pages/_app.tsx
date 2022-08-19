@@ -7,6 +7,9 @@ import authStyle from "../styles/auth.module.css";
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
+}: {
+  Component: any;
+  pageProps: any;
 }) {
   return (
     <SessionProvider session={session}>
@@ -37,7 +40,7 @@ function Auth({ children }: { children: any }) {
   // If no user, useEffect() will redirect.
   return (
     // TODO: WRONG CSS FILE -- BUT WORKS
-    <div className={authStyle.authPage}> 
+    <div className={authStyle.authPage}>
       <Loading />
     </div>
   );

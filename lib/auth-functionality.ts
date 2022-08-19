@@ -1,6 +1,6 @@
 import { signOut } from "next-auth/react";
 import Router from "next/router";
-import { CredentialType, UserInformationType } from "./types";
+import { CredentialType, User } from "./types";
 import { checkAccountWithEmailPassHash } from "./hasura_query";
 import client from "./apollo-client";
 
@@ -12,7 +12,7 @@ export const logOut = async () => {
 
 export const checkCredential: (credential: CredentialType) => Promise<{
   ok: boolean;
-  data?: null | UserInformationType;
+  data?: null | User;
   message?: unknown;
 }> = async ({ email, passHash }) => {
   try {

@@ -57,7 +57,7 @@
 .button-remove {
   background: transparent;
   color: black;
-  padding: 5px 15px;
+  padding: 5px 12px;
   height: auto;
   text-align: center;
   text-justify: center;
@@ -65,9 +65,28 @@
   border: transparent;
   transition-duration: 0.2s;
   box-shadow: none;
+  border-radius: 100%;
 }
 .button-remove:hover {
   background-color: transparent;
   color: red;
   border: transparent;
+}
+
+.button-counter {
+  background: transparent;
+  color: black;
+  padding: 5px 10px;
+  height: auto;
+  text-align: center;
+  text-justify: center;
+  font-size: 18px;
+  transition-duration: 0.2s;
+  box-shadow: none;
+  border-radius: 100%;
+  border: 0px;
+}
+.button-counter:hover {
+  background-color: transparent;
+  color: #1890ff;
 }

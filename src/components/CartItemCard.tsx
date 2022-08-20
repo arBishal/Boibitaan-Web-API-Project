@@ -6,11 +6,6 @@ import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import Counter from "../ui-base-components/Counter";
 
 const CartItemCard = ({ image, name, author, price }) => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
 
   return (
     <div className={CartItemCardStyle.cartItem}>
@@ -35,7 +30,6 @@ const CartItemCard = ({ image, name, author, price }) => {
         <Button
           theme="remove"
           style={{ marginTop: "5px", marginBottom: "10px" }}
-          onClick={handleClick}
         >
           <DeleteOutlined />
         </Button>

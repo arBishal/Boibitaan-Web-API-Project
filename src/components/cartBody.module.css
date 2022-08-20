@@ -1,0 +1,16 @@
+.cartBody {
+    display: "flex";
+    align-items: "center";
+    justify-content: "center";
+    margin-top: 65px;
+    background-color: white;
+    height: auto;
+    top: 100px;
+  }
+
+.cartCard {
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 25px;
+  }

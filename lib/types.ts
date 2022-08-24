@@ -33,8 +33,8 @@ export type Book = {
   image: string;
   publisher: string;
   supplier: string;
-  quantity: string;
-  sale: string;
+  quantity: number;
+  sale: number;
   catagory: string;
 };
 

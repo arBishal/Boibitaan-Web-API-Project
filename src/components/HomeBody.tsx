@@ -5,9 +5,12 @@ import Items from "./Items";
 import { Book } from "../../lib/types";
 import { useApollo } from "../../lib/apollo-client";
 import { getAllBooks } from "../../lib/hasura_query";
+import Loading from "./Loading";
+
+import authStyle from "../../styles/auth.module.css";
 
 function HomeBody() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<Book[]>();
 
   useEffect(() => {
     const fetchBooksFromAPI = async () => {
@@ -15,35 +18,47 @@ function HomeBody() {
       const res = await client.query({
         query: getAllBooks(),
       });
-      setBooks(res.data);
+      const data: { books: Book[] } = res.data;
+      if (data) {
+        const bookList = [...data.books];
+        const sortedBooks = bookList.sort((a, b) => a.sale - b.sale);
+        setBooks(sortedBooks);
+      }
     };
 
     fetchBooksFromAPI();
   }, []);
-
   return (
     <div className={bodyStyle.homeBody}>
-      <Row>
-        <Col span={18} offset={3}>
-          <div className={bodyStyle.sectionHeader}>
-            <h4 style={{ fontSize: "18px", margin: "0px" }}>
-              সর্বাধিক বিক্রিত বইসমূহ
-            </h4>
-          </div>
-        </Col>
-      </Row>
-      <Items />
-      <Row>
-        <Col span={18} offset={3}>
-          <div className={bodyStyle.sectionHeader}>
-            <h4 style={{ fontSize: "18px", margin: "0px" }}>
-              আমাদের সকল বইসমূহ
-            </h4>
-          </div>
-        </Col>
-      </Row>
-      <Items />
-      <Items />
+      {books ? (
+        <>
+          <Row>
+            <Col span={18} offset={3}>
+              <div className={bodyStyle.sectionHeader}>
+                <h4 style={{ fontSize: "18px", margin: "0px" }}>
+                  সর্বাধিক বিক্রিত বইসমূহ
+                </h4>
+              </div>
+            </Col>
+          </Row>
+          <Items books={books} />
+          <Row>
+            <Col span={18} offset={3}>
+              <div className={bodyStyle.sectionHeader}>
+                <h4 style={{ fontSize: "18px", margin: "0px" }}>
+                  আমাদের সকল বইসমূহ
+                </h4>
+              </div>
+            </Col>
+          </Row>
+          <Items books={books} />
+          <Items books={books} />
+        </>
+      ) : (
+        <div className={authStyle.authPage}>
+          <Loading />
+        </div>
+      )}
     </div>
   );
 }

@@ -39,7 +39,7 @@ function Auth({ children }: { children: any }) {
   // Session is being fetched, or no user.
   // If no user, useEffect() will redirect.
   return (
-    // TODO: WRONG CSS FILE -- BUT WORKS
+    // TODO: WRONG CSS FILE -- BUT WORKS 
     <div className={authStyle.authPage}>
       <Loading />
     </div>

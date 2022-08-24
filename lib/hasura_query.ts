@@ -43,14 +43,14 @@ export const getAllBooks = () => {
   return gql`
     query MyQuery {
       books {
-        author
-        category
         id
-        image
         name
-        publisher
+        author
         price
+        image
         sale
+        category
+        publisher
         quantity
         supplier
       }

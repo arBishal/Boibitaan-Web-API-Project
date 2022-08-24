@@ -35,7 +35,7 @@ function HomeBody() {
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>
-                <h4 style={{ fontSize: "18px", margin: "0px" }}>
+                <h4 style={{ fontSize: "18px", margin: "0px 0px 0px 5px" }}>
                   সর্বাধিক বিক্রিত বইসমূহ
                 </h4>
               </div>
@@ -45,7 +45,7 @@ function HomeBody() {
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>
-                <h4 style={{ fontSize: "18px", margin: "0px" }}>
+                <h4 style={{ fontSize: "18px", margin: "0px 0px 0px 5px" }}>
                   আমাদের সকল বইসমূহ
                 </h4>
               </div>

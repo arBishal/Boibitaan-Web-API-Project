@@ -2,32 +2,20 @@ import React, { useState } from "react";
 import Button from "../ui-base-components/Button";
 import Image from "next/image";
 import ItemCardStyle from "./itemCard.module.css";
-import BuyBookModal from "./BuyBookModal";
+import { useRouter } from "next/router";
 
 const ItemCard = ({ image, name, author, price }) => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const router = useRouter();
 
   return (
-    <div>
+    <div className={ItemCardStyle.item} onClick={() => router.push("/product/id")}>
       <div className={ItemCardStyle.itemImage}>
         <Image src={image} alt="item1" height="135vh" width="90vh" />
       </div>
       <div className={ItemCardStyle.itemInfo}>
-        <p className={ItemCardStyle.infoText}>নাম: {name}</p>
-        <p className={ItemCardStyle.infoText}>লেখক: {author}</p>
-        <p className={ItemCardStyle.infoText}>মূল্য: {price}৳</p>
-        <Button
-          theme="dark"
-          style={{ marginTop: "5px", marginBottom: "10px" }}
-          onClick={handleClick}
-        >
-          কিনুন
-        </Button>
-        <BuyBookModal open={open} setOpen={setOpen} />
+        <p className={ItemCardStyle.infoText} style={{fontWeight: "bold"}}>{name}</p>
+        <p className={ItemCardStyle.infoText}>{author}</p>
+        <p className={ItemCardStyle.infoText} style={{marginBottom: "5px"}}>{price}</p>
       </div>
     </div>
   );

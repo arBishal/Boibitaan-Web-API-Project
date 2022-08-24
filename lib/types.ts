@@ -3,6 +3,13 @@ export type CredentialType = {
   passHash: string;
 };
 
+export type SessionType = {
+  user: { name: string; phone: string; email: string };
+  id: string;
+  expires: string;
+  token: string;
+};
+
 export type User = {
   id: string;
   name: string;

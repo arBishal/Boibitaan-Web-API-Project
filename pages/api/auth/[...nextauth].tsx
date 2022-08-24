@@ -93,6 +93,7 @@ export default NextAuth({
         algorithm: "HS256",
       });
       session.id = token.id;
+      session.token = encodedToken;
       //@ts-ignore
       session.user.phone = token.phone;
       return Promise.resolve(session);

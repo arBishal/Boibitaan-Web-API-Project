@@ -38,3 +38,22 @@ export const checkAccountWithEmailPassHash = (
     }
   `;
 };
+
+export const getAllBooks = () => {
+  return gql`
+    query MyQuery {
+      books {
+        author
+        category
+        id
+        image
+        name
+        publisher
+        price
+        sale
+        quantity
+        supplier
+      }
+    }
+  `;
+};

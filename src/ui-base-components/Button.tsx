@@ -14,6 +14,10 @@ const getButtonClassName = (theme: string) => {
       return "button-light";
     case "invisible":
       return "button-invisible";
+    case "remove":
+      return "button-remove";
+    case "counter":
+      return "button-counter";
     default:
       return "button-dark";
   }

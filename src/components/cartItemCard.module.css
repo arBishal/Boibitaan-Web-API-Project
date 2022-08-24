@@ -1,0 +1,38 @@
+.cartItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.itemImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eeeeee;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  font-size: 14px;
+  height: auto;
+  max-width: 133px;
+  margin-left: 20px;
+}
+
+.infoText {
+  margin-top: 5px;
+  margin-bottom: -3px;
+}
+
+.itemRemove {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.itemCounter {
+  margin-left: 50px;
+  margin-right: -35px;
+}

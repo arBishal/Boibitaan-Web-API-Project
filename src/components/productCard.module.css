@@ -1,0 +1,34 @@
+.productCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .cardImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #eeeeee;
+  }
+  
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    font-size: 16px;
+    height: auto;
+    margin-left: 20px;
+  }
+  
+  .infoText {
+    margin-top: 5px;
+    margin-bottom: -3px;
+  }
+  
+  .infoTextLarge {
+    margin-top: 5px;
+    margin-bottom: -3px;
+    font-size: 22px;
+    font-weight: bold;
+  }

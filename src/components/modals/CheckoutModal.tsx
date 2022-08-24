@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Button from "../ui-base-components/Button";
-import InputText from "../ui-base-components/InputText";
-import Modal from "../ui-base-components/Modal";
+import Button from "../../ui-base-components/Button";
+import InputText from "../../ui-base-components/InputText";
+import Modal from "../../ui-base-components/Modal";
 
 import BuyBookModalStyle from "./buyBookModal.module.css";
 
 //@ts-ignore
 export default function BuyBookModal({ setOpen, open }) {
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const handleAddBook = () => {
     setOpen(false);
@@ -32,7 +32,7 @@ export default function BuyBookModal({ setOpen, open }) {
           onClick={handleAddBook}
           style={{ marginRight: "7px", marginLeft: "10px" }}
         >
-          এখনই লেনদেন করুন
+          বিস্তারিত দেখুন
         </Button>,
       ]}
     >
@@ -59,7 +59,7 @@ export default function BuyBookModal({ setOpen, open }) {
           style={{ marginRight: "7px", marginLeft: "10px" }}
           disabled
         >
-          এখনই লেনদেন করুন
+          বিস্তারিত দেখুন
         </Button>,
       ]}
     >

@@ -28,9 +28,25 @@ function HomeBody() {
 
     fetchBooksFromAPI();
   }, []);
+
+  const rows: Book[][] = [];
+  if (books) {
+    let tempArray: Book[] = [];
+    books.forEach((book, index) => {
+      tempArray.push(book);
+      if (index % 6 == 5) {
+        rows.push(tempArray);
+        tempArray = [];
+      }
+    });
+    if (tempArray.length) {
+      rows.push(tempArray);
+    }
+  }
+
   return (
     <div className={bodyStyle.homeBody}>
-      {books ? (
+      {rows.length ? (
         <>
           <Row>
             <Col span={18} offset={3}>
@@ -41,7 +57,7 @@ function HomeBody() {
               </div>
             </Col>
           </Row>
-          <Items books={books} />
+          <Items books={rows[0]} />
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>
@@ -51,8 +67,9 @@ function HomeBody() {
               </div>
             </Col>
           </Row>
-          <Items books={books} />
-          <Items books={books} />
+          {rows.map((row) => (
+            <Items books={row} />
+          ))}
         </>
       ) : (
         <div className={authStyle.authPage}>

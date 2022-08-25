@@ -6,11 +6,13 @@ import { Book } from "../../lib/types";
 import { useApollo } from "../../lib/apollo-client";
 import { getAllBooks } from "../../lib/hasura_query";
 import Loading from "./Loading";
+import SetupModal from "./modals/SetupModal";
 
 import authStyle from "../../styles/auth.module.css";
 
 function HomeBody() {
   const [books, setBooks] = useState<Book[]>();
+  const [newUser, setNewUser] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchBooksFromAPI = async () => {
@@ -32,6 +34,7 @@ function HomeBody() {
     <div className={bodyStyle.homeBody}>
       {books ? (
         <>
+          <SetupModal open={newUser} setOpen={setNewUser} />
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>

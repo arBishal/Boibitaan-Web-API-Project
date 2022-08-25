@@ -26,7 +26,7 @@ export type BankAccount = {
 };
 
 export type Book = {
-  id: number;
+  id: number | string;
   name: string;
   author: string;
   price: number;
@@ -36,6 +36,7 @@ export type Book = {
   quantity: number;
   sale: number;
   catagory: string;
+  description: string;
 };
 
 export type Supplier = {
@@ -49,4 +50,4 @@ export type Transaction = {
   sender: string;
   reciever: string;
   amount: number;
-}
+};

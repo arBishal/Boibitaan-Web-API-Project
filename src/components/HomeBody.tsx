@@ -67,8 +67,8 @@ function HomeBody() {
               </div>
             </Col>
           </Row>
-          {rows.map((row) => (
-            <Items books={row} />
+          {rows.map((row, id) => (
+            <Items id={id} books={row} />
           ))}
         </>
       ) : (

@@ -3,6 +3,7 @@ import navlogo from "../../public/logo/logo.png";
 import navStyle from "./navbar.module.css";
 import { Row, Col, Input } from "antd";
 import NavbarRight from "./NavbarRight";
+import Router from "next/router";
 
 const { Search } = Input;
 const onSearch = (value: any) => console.log(value);
@@ -11,8 +12,8 @@ const Navbar = () => {
   return (
     <div className={navStyle.navbar}>
       <Row justify="center" align="middle" style={{ width: "100%" }}>
-        <Col span={5}>
-          <div style={{ paddingTop: "15px", paddingBottom: "15px" }}>
+        <Col span={5} onClick={()=>Router.push('/')}>
+          <div style={{ paddingTop: "15px", paddingBottom: "15px" } }>
             <Image
               src={navlogo}
               alt="boibitaanlogo"

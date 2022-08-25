@@ -34,7 +34,10 @@ const NavbarRight = () => {
     </div>
   ) : (
     <div className={navStyle.navbarRight}>
-      <ShoppingCartOutlined className={iconStyle.icon} />
+      <ShoppingCartOutlined
+        className={iconStyle.icon}
+        onClick={() => router.push("/cart")}
+      />
       <UserOutlined
         className={iconStyle.icon}
         onClick={() => router.push("/profile")}

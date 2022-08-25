@@ -54,3 +54,11 @@ export type Transaction = {
   reciever: string;
   amount: number;
 };
+
+export type Cart = Record<
+  string | number,
+  {
+    amount: number;
+    book: Book;
+  }
+>;

@@ -4,14 +4,14 @@ import Image from "next/image";
 import CartItemCardStyle from "./cartItemCard.module.css";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import Counter from "../ui-base-components/Counter";
+import { Book } from "../../lib/types";
 
-const CartItemCard = ({ image, name, author, price }) => {
-
+const CartItemCard = ({ image, name, author, price }: Partial<Book>) => {
   return (
     <div className={CartItemCardStyle.cartItem}>
       <div className={CartItemCardStyle.itemImage}>
         <Image
-          src={image}
+          src={ process.env.NEXT_PUBLIC_FIREBASE_STORAGE_PREFIX + image}
           alt="item1"
           height="135vh"
           width="90vh"

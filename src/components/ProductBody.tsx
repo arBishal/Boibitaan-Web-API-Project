@@ -12,6 +12,21 @@ function ProductBody({ book }: { book: Book }) {
 
   const onClickHandler = () => {
     if (status === "authenticated") {
+      const cart = localStorage.getItem("cart");
+      if (!cart) {
+        localStorage.setItem(
+          "cart",
+          JSON.stringify({ [book.id]: { amount: 1, book } })
+        );
+      } else {
+        const cartObject = JSON.parse(cart);
+        if (!cartObject[book.id]) {
+          cartObject[book.id] = { amount: 1, book };
+        } else {
+          cartObject[book.id].amount++;
+        }
+        localStorage.setItem("cart", JSON.stringify(cartObject));
+      }
     } else if (status === "unauthenticated") {
       Router.push("/auth/signin");
     } else {

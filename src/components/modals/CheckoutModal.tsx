@@ -1,69 +1,28 @@
+import { Alert } from "antd";
 import { useState } from "react";
 import Button from "../../ui-base-components/Button";
 import InputText from "../../ui-base-components/InputText";
 import Modal from "../../ui-base-components/Modal";
 
-import BuyBookModalStyle from "./buyBookModal.module.css";
-
 //@ts-ignore
-export default function BuyBookModal({ setOpen, open }) {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+export default function CheckoutModal({ setOpen, open }) {
 
-  const handleAddBook = () => {
+  const successPrompt = () => {
     setOpen(false);
   };
 
-  const handlePayment = () => {
-    setOpen(false);
-  };
-
-  return loggedIn ? (
+  return (
     <Modal
       visible={open}
-      title="বইটি কিনুন"
-      onCancel={handlePayment}
+      title=""
+      onCancel={setOpen(false)}
       footer={[
-        <Button key="cancelButton" theme="dark" onClick={handlePayment}>
-          কার্টে যুক্ত করুন
-        </Button>,
-        <Button
-          key="AddBookButton"
-          theme="dark"
-          onClick={handleAddBook}
-          style={{ marginRight: "7px", marginLeft: "10px" }}
-        >
-          বিস্তারিত দেখুন
-        </Button>,
+        <Button key="cancelButton" theme="dark" onClick={successPrompt}>
+          ঠিক আছে
+        </Button>
       ]}
     >
-      <div>আপনি এখন এই বইটি কিনছেন</div>
-    </Modal>
-  ) : (
-    <Modal
-      visible={open}
-      title="বইটি কিনুন"
-      onCancel={handlePayment}
-      footer={[
-        <Button
-          key="cancelButton"
-          theme="dark"
-          onClick={handlePayment}
-          disabled
-        >
-          কার্টে যুক্ত করুন
-        </Button>,
-        <Button
-          key="AddBookButton"
-          theme="dark"
-          onClick={handleAddBook}
-          style={{ marginRight: "7px", marginLeft: "10px" }}
-          disabled
-        >
-          বিস্তারিত দেখুন
-        </Button>,
-      ]}
-    >
-      <p>বইটি কিনতে চাইলে সাইন আপ / লগ ইন করুন।</p>
+      <div>আপনার অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। সাথে থাকার জন্য ধন্যবাদ!</div>
     </Modal>
   );
 }

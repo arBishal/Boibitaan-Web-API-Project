@@ -23,7 +23,6 @@ export async function getStaticProps({ params }) {
   const res = await client.query({
     query: getBookById(params.id),
   });
-  console.log(res.data);
   return { props: { book: res.data.books_by_pk } };
 }
 

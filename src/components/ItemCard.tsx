@@ -4,14 +4,26 @@ import Image from "next/image";
 import ItemCardStyle from "./itemCard.module.css";
 import { useRouter } from "next/router";
 import { Book } from "../../lib/types";
+import Loading from "./Loading";
+import authStyle from "../../styles/auth.module.css";
 
 const ItemCard = ({ id, image, name, author, price }: Partial<Book>) => {
   const router = useRouter();
-
+  // const [loading, setLoading] = useState(false);
+  // if (loading) {
+  //   return (
+  //     <div className={authStyle.authPage}>
+  //       <Loading />
+  //     </div>
+  //   );
+  // }
   return (
     <div
       className={ItemCardStyle.item}
-      onClick={() => router.push(`/product/${id}`)}
+      onClick={() => {
+        // setLoading(true);
+        router.push(`/product/${id}`);
+      }}
     >
       <div className={ItemCardStyle.itemImage}>
         <Image src={image} alt="item1" height="135vh" width="90vh" />

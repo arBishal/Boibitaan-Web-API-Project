@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { User } from "./types";
 
 export const upsertUserByEmail = (
   email: string,
@@ -83,6 +84,57 @@ export const getAllBookId = () => {
     query MyQuery {
       books {
         id
+      }
+    }
+  `;
+};
+
+export const getUserDetails = () => {
+  return gql`
+    query MyQuery {
+      user {
+        address
+        accountNumber
+        created_at
+        email
+        id
+        name
+        phone
+      }
+    }
+  `;
+};
+
+export const updateUserInfo = ({
+  id,
+  name,
+  phone,
+  accountNumber,
+  address,
+  email,
+}: User) => {
+  return gql`
+    mutation MyMutation {
+      update_user(
+        _set: {
+          address: "${address}"
+          name: "${name}"
+          phone: "${phone}"
+          email: "${email}"
+          accountNumber: ${accountNumber}
+        }
+        where: { id: { _eq: ${id} } }
+      ) {
+        affected_rows
+        returning {
+          accountNumber
+          address
+          created_at
+          email
+          id
+          name
+          phone
+        }
       }
     }
   `;

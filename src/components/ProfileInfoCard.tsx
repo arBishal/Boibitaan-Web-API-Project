@@ -1,56 +1,130 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileInfoCardStyle from "./profileBody.module.css";
 import InputText from "../ui-base-components/InputText";
 import InputTextArea from "../ui-base-components/InputTextArea";
 import Button from "../ui-base-components/Button";
+import { User } from "../../lib/types";
+import { useSession } from "next-auth/react";
+import { useApollo } from "../../lib/apollo-client";
+import { getUserDetails, updateUserInfo } from "../../lib/hasura_query";
+import Loading from "./Loading";
 
 const ProfileInfoCard = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [contact, setContact] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [bankId, setBankId] = useState<string>("");
-  const [secretKey, setSecretKey] = useState<string>("");
-  const [session, serSession] = useState<boolean>(true);
+  const { data: session, status } = useSession();
+  const [user, setUser] = useState<User>();
 
-  return session ? (
+  const handleChange = (e: { target: { id: string; value: string } }) => {
+    const { id, value } = e.target;
+    setUser((prev) => {
+      if (prev) return { ...prev, [id]: value };
+    });
+  };
+
+  const handleClick = async () => {
+    if (status === "authenticated" && user) {
+      try {
+        console.log(user);
+        const { token } = session;
+        const client = useApollo(token);
+        const res = await client.mutate({
+          mutation: updateUserInfo(user),
+        });
+        if (res.data) {
+          const { returning } = res.data.update_user;
+          setUser(returning[0]);
+          alert("Update Successful!");
+        }
+      } catch (err) {
+        alert("Update Failed!");
+        console.log({ err });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { token } = session;
+      const client = useApollo(token);
+      const res = await client.query({
+        query: getUserDetails(),
+      });
+      const users = res.data.user;
+      if (users?.length) {
+        setUser(users[0]);
+      }
+    };
+    if (status === "authenticated") {
+      fetchUser();
+    }
+  }, [status]);
+
+  return user ? (
     <div>
       <div className={ProfileInfoCardStyle.profileForm}>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> পূর্ণ নাম </p>
-          <InputText placeholder={name}></InputText>
+          <InputText
+            id="name"
+            placeholder={"নাম লিখুন"}
+            value={user.name}
+            onChange={handleChange}
+          />
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> ই-মেইল </p>
-          <InputText placeholder={email}></InputText>
+          <InputText
+            id="email"
+            placeholder={"ইমেইল"}
+            value={user.email}
+            onChange={handleChange}
+          />
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> ফোন নাম্বার </p>
-          <InputText placeholder={contact}></InputText>
+          <InputText
+            id="phone"
+            placeholder={"ফোন"}
+            value={user.phone}
+            onChange={handleChange}
+          />
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> পূর্ণ ঠিকানা </p>
           <InputTextArea
-            placeholder={address}
+            id="address"
+            value={user.address}
+            onChange={handleChange}
+            placeholder={"পূর্ণ ঠিকানা"}
             autoSize={{ minRows: 3, maxRows: 6 }}
           ></InputTextArea>
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> ব্যাংক অ্যাকাউন্ট </p>
-          <InputText placeholder={bankId}></InputText>
+          <InputText
+            id="accountNumber"
+            placeholder={"ব্যাংক অ্যাকাউন্ট"}
+            value={user.accountNumber}
+            onChange={handleChange}
+          />
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> গোপন নাম্বার </p>
-          <InputText placeholder={secretKey}></InputText>
+          <InputText
+            placeholder={"গোপন নাম্বার"}
+            id="secretKey"
+            onChange={handleChange}
+          />
         </div>
-        <Button style={{ marginTop: "20px", marginBottom: "-15px" }}>
+        <Button
+          style={{ marginTop: "20px", marginBottom: "-15px" }}
+          onClick={handleClick}
+        >
           সেভ করুন
         </Button>
       </div>
     </div>
   ) : (
-    <></>
+    <Loading />
   );
 };
 

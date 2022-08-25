@@ -1,3 +1,5 @@
+import { Session } from "next-auth/core/types";
+
 export type CredentialType = {
   email: string;
   passHash: string;
@@ -15,7 +17,8 @@ export type User = {
   name: string;
   email: string;
   phone: string;
-  accountNumber: number;
+  accountNumber: number | string;
+  address: string;
 };
 
 export type BankAccount = {

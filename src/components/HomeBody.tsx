@@ -21,7 +21,7 @@ function HomeBody() {
       const data: { books: Book[] } = res.data;
       if (data) {
         const bookList = [...data.books];
-        const sortedBooks = bookList.sort((a, b) => a.sale - b.sale);
+        const sortedBooks = bookList.sort((a, b) => b.sale - a.sale);
         setBooks(sortedBooks);
       }
     };

@@ -57,3 +57,33 @@ export const getAllBooks = () => {
     }
   `;
 };
+
+export const getBookById = (id: string) => {
+  return gql`
+    query MyQuery {
+      books_by_pk(id: ${id}) {
+        id
+        image
+        name
+        price
+        publisher
+        quantity
+        sale
+        supplier
+        description
+        category
+        author
+      }
+    }
+  `;
+};
+
+export const getAllBookId = () => {
+  return gql`
+    query MyQuery {
+      books {
+        id
+      }
+    }
+  `;
+};

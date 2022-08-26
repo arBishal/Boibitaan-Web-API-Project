@@ -13,9 +13,6 @@ export default function AddToCartModal({ setOpen, open }) {
       visible={open}
       onCancel={handleClick}
       footer={[
-        <Button key="cancelButton" theme="dark" onClick={handleClick} style={{ marginRight: "7px"}}>
-          ঠিক আছে
-        </Button>
       ]}
     >
       <div>বইটি কার্টে যুক্ত করা হয়েছে।</div>

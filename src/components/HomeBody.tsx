@@ -9,10 +9,11 @@ import Loading from "./Loading";
 import SetupModal from "./modals/SetupModal";
 
 import authStyle from "../../styles/auth.module.css";
+import Carousel from "../ui-base-components/Carousel";
 
 function HomeBody() {
   const [books, setBooks] = useState<Book[]>();
-  const [newUser, setNewUser] = useState<boolean>(true);
+  const [newUser, setNewUser] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBooksFromAPI = async () => {
@@ -51,6 +52,13 @@ function HomeBody() {
       {rows.length ? (
         <>
           <SetupModal open={newUser} setOpen={setNewUser} />
+          <Row>
+            <Col span={18} offset={3}>
+              <div style={{marginTop:"25px"}}>
+              <Carousel></Carousel>
+              </div>
+            </Col>
+          </Row>
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>

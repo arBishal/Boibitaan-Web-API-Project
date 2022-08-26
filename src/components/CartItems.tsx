@@ -6,6 +6,7 @@ import CartBodyStyle from "./cartBody.module.css";
 import CartItemCard from "./CartItemCard";
 
 const CartItems = () => {
+  const [amount, setAmount] = useState<number>(0);
   return (
     <div style={{ marginTop: "25px" }}>
       <Row>
@@ -29,6 +30,13 @@ const CartItems = () => {
             author="জীবনানন্দ দাশ দাশ"
             price="৩৭৫"
             />
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={8} offset={8}>
+          <div className={CartBodyStyle.cartAmount}>
+            প্রদেয় মোট টাকার পরিমাণ: {amount} ৳
           </div>
         </Col>
       </Row>

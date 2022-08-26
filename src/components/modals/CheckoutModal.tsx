@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 
 //@ts-ignore
-export default function CheckoutModal({ setOpen, open }) {
+export default function CheckoutModal({ setOpen, open, title, text }) {
   const router = useRouter();
   const handleClick = () => {
     setOpen(false);
@@ -14,12 +14,12 @@ export default function CheckoutModal({ setOpen, open }) {
   return (
     <Modal
       visible={open}
-      title="অর্ডার সফল হয়েছে!"
+      title={title}
       onCancel={handleClick}
       footer={[
       ]}
     >
-      <div>অর্ডারটি হাতে পাবার জন্য দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। আমাদের সাথেই থাকুন। ধন্যবাদ।</div>
+      <div>{text}</div>
     </Modal>
   );
 }

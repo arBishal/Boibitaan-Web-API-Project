@@ -10,12 +10,14 @@ export default function SetupModal({ open, setOpen }) {
   const handleClick = () => {
     setOpen(false);
   };
-
+  const handleCancel = () => {
+    setOpen(true);
+  }
   return (
     <Modal
       visible={open}
       title="লেনদেন বিষয়ক তথ্যাবলি"
-      onCancel={handleClick}
+      onCancel={handleCancel}
       footer={[
         <Button key="cancelButton" theme="dark" onClick={handleClick} style={{ marginRight: "7px"}}>
           নিশ্চিত করুন

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Row, Col } from "antd";
 import ProductBodyStyle from "./productBody.module.css";
 import ProductCard from "./ProductCard";
@@ -6,9 +6,11 @@ import Button from "../ui-base-components/Button";
 import { Book } from "../../lib/types";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
+import AddToCartModal from "./modals/AddToCartModal";
 
 function ProductBody({ book }: { book: Book }) {
   const { status } = useSession();
+  const [open, setOpen] = useState<boolean>(false);
 
   const onClickHandler = () => {
     if (status === "authenticated") {
@@ -27,6 +29,7 @@ function ProductBody({ book }: { book: Book }) {
         }
         localStorage.setItem("cart", JSON.stringify(cartObject));
       }
+      setOpen(true);
     } else if (status === "unauthenticated") {
       Router.push("/auth/signin");
     } else {
@@ -73,6 +76,7 @@ function ProductBody({ book }: { book: Book }) {
             {" "}
             কার্টে যুক্ত করুন{" "}
           </Button>
+          <AddToCartModal setOpen={setOpen} open={open}></AddToCartModal>
         </Col>
       </Row>
     </div>

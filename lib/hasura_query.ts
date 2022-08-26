@@ -139,3 +139,15 @@ export const updateUserInfo = ({
     }
   `;
 };
+
+export const getUserSecrets = (id: number) => {
+  return gql`
+    query MyQuery {
+      user(where: { id: { _eq: ${id} } }) {
+        accountNumber
+        passHash
+        secretKey
+      }
+    }
+  `;
+};

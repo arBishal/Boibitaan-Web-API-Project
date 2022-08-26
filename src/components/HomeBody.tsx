@@ -10,11 +10,35 @@ import SetupModal from "./modals/SetupModal";
 
 import authStyle from "../../styles/auth.module.css";
 import Carousel from "../ui-base-components/Carousel";
+import { useSession } from "next-auth/react";
 
 function HomeBody() {
   const [books, setBooks] = useState<Book[]>();
   const [newUser, setNewUser] = useState<boolean>(false);
 
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      const { token } = session;
+      const checkSecret = async () => {
+        console.log({ token });
+        const res = await fetch("/api/checkSecret", {
+          method: "POST",
+          body: JSON.stringify({ token }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+        const { needUpdate } = await res.json();
+        if (needUpdate) {
+          setNewUser(true);
+        }
+      };
+
+      checkSecret();
+    }
+  }, [status]);
   useEffect(() => {
     const fetchBooksFromAPI = async () => {
       const client = useApollo(undefined);
@@ -54,8 +78,8 @@ function HomeBody() {
           <SetupModal open={newUser} setOpen={setNewUser} />
           <Row>
             <Col span={18} offset={3}>
-              <div style={{marginTop:"25px"}}>
-              <Carousel></Carousel>
+              <div style={{ marginTop: "25px" }}>
+                <Carousel></Carousel>
               </div>
             </Col>
           </Row>
@@ -68,7 +92,7 @@ function HomeBody() {
               </div>
             </Col>
           </Row>
-          <Items books={rows[0]} />
+          <Items id={1} books={rows[0]} />
           <Row>
             <Col span={18} offset={3}>
               <div className={bodyStyle.sectionHeader}>

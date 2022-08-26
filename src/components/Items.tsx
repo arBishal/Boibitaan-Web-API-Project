@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 import ItemCard from "./ItemCard";
 import { Book } from "../../lib/types";
 
-const Items = ({ books = [] }: { books: Book[] }) => {
+const Items = ({ books = [] }: { id: number; books: Book[] }) => {
   const rowComponenet = books.map((book, id) => (
     <Col span={3} offset={id === 0 ? 3 : 0}>
       <ItemCard

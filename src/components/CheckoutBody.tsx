@@ -37,7 +37,7 @@ function CheckoutBody() {
           সম্পন্ন করুন{" "}
         </Button>
         </Col>
-        <CheckoutModal setOpen={setOpen} open={open}></CheckoutModal>
+        <CheckoutModal setOpen={setOpen} open={open} title="অর্ডার সফল হয়েছে!" text="অর্ডারটি হাতে পাবার জন্য দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। আমাদের সাথেই থাকুন। ধন্যবাদ।"></CheckoutModal>
       </Row>
     </div>
   );

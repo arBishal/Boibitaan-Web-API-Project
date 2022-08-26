@@ -11,7 +11,7 @@ export default function SetupModal({ open, setOpen }) {
     setOpen(false);
   };
   const handleCancel = () => {
-    setOpen(true);
+    
   }
   return (
     <Modal

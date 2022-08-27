@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProfileInfoCardStyle from "./profileBody.module.css";
 import InputText from "../ui-base-components/InputText";
+import InputPassword from "../ui-base-components/InputPassword";
 import InputTextArea from "../ui-base-components/InputTextArea";
 import Button from "../ui-base-components/Button";
 import { User } from "../../lib/types";
@@ -109,9 +110,10 @@ const ProfileInfoCard = () => {
         </div>
         <div className={ProfileInfoCardStyle.inputStyle}>
           <p style={{ marginBottom: "3px" }}> গোপন নাম্বার </p>
-          <InputText
+          <InputPassword
             placeholder={"গোপন নাম্বার"}
             id="secretKey"
+            value={user.secretKey}
             onChange={handleChange}
           />
         </div>

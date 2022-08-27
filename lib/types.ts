@@ -19,6 +19,7 @@ export type User = {
   phone: string;
   accountNumber: number | string;
   address: string;
+  secretKey?: string;
 };
 
 export type BankAccount = {

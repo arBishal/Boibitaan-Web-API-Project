@@ -100,6 +100,7 @@ export const getUserDetails = () => {
         id
         name
         phone
+        secretKey
       }
     }
   `;
@@ -112,6 +113,7 @@ export const updateUserInfo = ({
   accountNumber,
   address,
   email,
+  secretKey,
 }: User) => {
   return gql`
     mutation MyMutation {
@@ -122,6 +124,7 @@ export const updateUserInfo = ({
           phone: "${phone}"
           email: "${email}"
           accountNumber: ${accountNumber}
+          secretKey: "${secretKey}"
         }
         where: { id: { _eq: ${id} } }
       ) {

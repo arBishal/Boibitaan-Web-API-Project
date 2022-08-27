@@ -21,39 +21,43 @@ const CartItemCard = ({
   const [counter, setCounter] = useState<number>(1);
   return (
     <div className={CartItemCardStyle.cartItem}>
-      <div className={CartItemCardStyle.itemImage}>
-        <Image
-          // @ts-ignore
-          src={process.env.NEXT_PUBLIC_FIREBASE_STORAGE_PREFIX + image}
-          alt="item1"
-          height="135vh"
-          width="90vh"
-          style={{ borderRadius: "10px 0px 0px 10px" }}
-        />
+      <div className={CartItemCardStyle.cartLeft}>
+        <div className={CartItemCardStyle.itemImage}>
+          <Image
+            // @ts-ignore
+            src={process.env.NEXT_PUBLIC_FIREBASE_STORAGE_PREFIX + image}
+            alt="item1"
+            height="135vh"
+            width="90vh"
+            style={{ borderRadius: "10px 0px 0px 10px" }}
+          />
+        </div>
+        <div className={CartItemCardStyle.itemInfo}>
+          <p className={CartItemCardStyle.infoText}>নাম: {name}</p>
+          <p className={CartItemCardStyle.infoText}>লেখক: {author}</p>
+          <p className={CartItemCardStyle.infoText}>মূল্য: {price}</p>
+        </div>
       </div>
-      <div className={CartItemCardStyle.itemInfo}>
-        <p className={CartItemCardStyle.infoText}>নাম: {name}</p>
-        <p className={CartItemCardStyle.infoText}>লেখক: {author}</p>
-        <p className={CartItemCardStyle.infoText}>মূল্য: {price}</p>
-      </div>
-      <div className={CartItemCardStyle.itemCounter}>
-        <Counter id={id} cart={cart} setCart={setCart} />
-      </div>
-      <div className={CartItemCardStyle.itemRemove}>
-        <Button
-          onClick={() => {
-            setCart((prevCart) => {
-              const newCart = JSON.parse(JSON.stringify(prevCart));
-              newCart[id].amount = 0;
-              localStorage.setItem("cart", JSON.stringify(newCart));
-              return newCart;
-            });
-          }}
-          theme="remove"
-          style={{ marginTop: "5px", marginBottom: "10px" }}
-        >
-          <DeleteOutlined />
-        </Button>
+      <div className={CartItemCardStyle.cartRight}>
+        <div>
+          <Counter id={id} cart={cart} setCart={setCart} />
+        </div>
+        <div style={{marginRight: "10px"}}>
+          <Button
+            onClick={() => {
+              setCart((prevCart) => {
+                const newCart = JSON.parse(JSON.stringify(prevCart));
+                newCart[id].amount = 0;
+                localStorage.setItem("cart", JSON.stringify(newCart));
+                return newCart;
+              });
+            }}
+            theme="remove"
+            style={{ marginTop: "5px", marginBottom: "10px" }}
+          >
+            <DeleteOutlined />
+          </Button>
+        </div>
       </div>
     </div>
   );

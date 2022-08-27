@@ -10,6 +10,7 @@ import navStyle from "./navbar.module.css";
 import { useRouter } from "next/router";
 import { logOut } from "../../lib/auth-functionality";
 import { useSession } from "next-auth/react";
+import Badge from "../ui-base-components/Badge";
 
 const NavbarRight = () => {
   const router = useRouter();
@@ -34,10 +35,12 @@ const NavbarRight = () => {
     </div>
   ) : (
     <div className={navStyle.navbarRight}>
-      <ShoppingCartOutlined
-        className={iconStyle.icon}
-        onClick={() => router.push("/cart")}
-      />
+      <Badge count={7}>
+        <ShoppingCartOutlined
+          className={iconStyle.icon}
+          onClick={() => router.push("/cart")}
+        />
+      </Badge>
       <UserOutlined
         className={iconStyle.icon}
         onClick={() => router.push("/profile")}

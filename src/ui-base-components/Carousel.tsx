@@ -19,17 +19,14 @@ const Carousel = () => (
     <Image
       src={c1}
       alt="c1"
-      style={{ borderRadius: "10px", width: "100%" }}
     />
     <Image
       src={c2}
       alt="c2"
-      style={{ borderRadius: "10px" }}
     />
     <Image
       src={c3}
       alt="c3"
-      style={{ borderRadius: "10px" }}
     />
   </AntdCarousel>
 );

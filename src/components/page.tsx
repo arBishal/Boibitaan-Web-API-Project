@@ -13,7 +13,7 @@ const Page: React.FC<PageProps> = ({ title, children }) => {
     <div>
       <Head>
         <title>{title}</title>
-        <link rel="shortcut icon" href="/image/logo.png"></link>
+        <link rel="shortcut icon" href="/logo/logotitle.png"></link>
       </Head>
       <Navbar />
       {children}

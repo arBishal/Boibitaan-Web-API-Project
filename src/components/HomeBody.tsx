@@ -77,7 +77,7 @@ function HomeBody() {
           <SetupModal open={newUser} setOpen={setNewUser} />
           <Row>
             <Col span={18} offset={3}>
-              <div style={{ marginTop: "25px" }}>
+              <div style={{ marginTop: "35px" }}>
                 <Carousel></Carousel>
               </div>
             </Col>

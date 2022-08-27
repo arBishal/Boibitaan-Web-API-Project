@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className={navStyle.navbar}>
       <Row justify="center" align="middle" style={{ width: "100%" }}>
         <Col span={5} onClick={()=>Router.push('/')}>
-          <div style={{ paddingTop: "15px", paddingBottom: "15px" } }>
+          <div className={navStyle.navbarImage}>
             <Image
               src={navlogo}
               alt="boibitaanlogo"

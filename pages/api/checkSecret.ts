@@ -18,7 +18,7 @@ export default async function handler(
       const { user } = data;
       if (user.length) {
         const { accountNumber, passHash, secretKey } = user[0];
-        if (secretKey || secretKey === "") {
+        if (!secretKey || secretKey === "" || !accountNumber) {
           return res.status(200).json({ needUpdate: true });
         }
       }

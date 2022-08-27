@@ -151,3 +151,25 @@ export const getUserSecrets = (id: number) => {
     }
   `;
 };
+
+export const updateUserCredential = (
+  id: number,
+  accountNumber: number,
+  secretKey: string
+) => {
+  return gql`
+    mutation MyMutation {
+      update_user(
+        where: { id: { _eq: ${id} } }
+        _set: { accountNumber: ${accountNumber}, secretKey: "${secretKey}" }
+      ) {
+        affected_rows
+        returning {
+          id
+          accountNumber
+          secretKey
+        }
+      }
+    }
+  `;
+};

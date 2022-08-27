@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { Row, Col } from "antd";
 import CartBodyStyle from "./cartBody.module.css";
@@ -8,30 +13,51 @@ import Button from "../ui-base-components/Button";
 import CartItemCard from "./CartItemCard";
 
 function CartBody() {
-  const [cart, setCart] = useState<string>();
+  console.log("CART body");
+  const [cart, setCart] = useState<Cart>({});
 
   useEffect(() => {
-    setCart(localStorage.getItem("cart")?.toString());
+    setCart(
+      JSON.parse((localStorage.getItem("cart")?.toString() as string) || `{}`)
+    );
   }, []);
 
-  const noBook = (
-    <div className={CartBodyStyle.cartBody}>
-      <Row>
-        <Col span={8} offset={8}>
-          <p className={CartBodyStyle.cartText}>
-            আপনার কার্টে কোন বই নেই। <br /> অর্ডার করার জন্য কার্টে বই যুক্ত
-            করুন। <br /> ধন্যবাদ।
-          </p>
-        </Col>
-      </Row>
-    </div>
+  const noBook = useMemo(
+    () => (
+      <div className={CartBodyStyle.cartBody}>
+        <Row>
+          <Col span={8} offset={8}>
+            <p className={CartBodyStyle.cartText}>
+              আপনার কার্টে কোন বই নেই। <br /> অর্ডার করার জন্য কার্টে বই যুক্ত
+              করুন। <br /> ধন্যবাদ।
+            </p>
+          </Col>
+        </Row>
+      </div>
+    ),
+    []
   );
+  const totalBooks = useCallback((cart: Cart) => {
+    let bookList: (string | number)[] = Object.keys(cart);
+    return Number(
+      bookList.reduce((total, id) => {
+        return Number(total) + cart[id].amount;
+      }, 0)
+    );
+  }, []);
 
-  if (!cart) {
+  if (!cart || totalBooks(cart) === 0) {
     return noBook;
   }
-  const cartItems: Cart = JSON.parse(cart);
-  let bookList: (string | number)[] = Object.keys(cartItems);
+  
+  let bookList: (string | number)[] = Object.keys(cart);
+
+  const totalPrice: number = Number(
+    bookList.reduce((total, id) => {
+      console.log(cart[id].book.price);
+      return Number(total) + cart[id].amount * cart[id].book.price;
+    }, 0)
+  );
 
   if (!bookList.length) {
     return noBook;
@@ -41,22 +67,36 @@ function CartBody() {
     <div className={CartBodyStyle.cartBody}>
       <div style={{ marginTop: "25px" }}>
         {bookList.map((id, index) => {
-          const { amount, book } = cartItems[id];
-          return (
-            <Row id={index.toString()}>
-              <Col span={8} offset={8}>
-                <div className={CartBodyStyle.cartCard}>
-                  <CartItemCard
-                    image={book.image}
-                    name={book.name}
-                    author={book.author}
-                    price={book.price}
-                  />
-                </div>
-              </Col>
-            </Row>
-          );
+          const { amount, book } = cart[id];
+          if (amount) {
+            return (
+              <Row id={index.toString()}>
+                <Col span={8} offset={8}>
+                  <div className={CartBodyStyle.cartCard}>
+                    <CartItemCard
+                      id={Number(book.id)}
+                      image={book.image}
+                      name={book.name}
+                      author={book.author}
+                      price={book.price}
+                      cart={cart}
+                      setCart={setCart}
+                    />
+                  </div>
+                </Col>
+              </Row>
+            );
+          } else {
+            return <></>;
+          }
         })}
+        <Row>
+          <Col span={8} offset={8}>
+            <div className={CartBodyStyle.cartAmount}>
+              প্রদেয় মোট টাকার পরিমাণ: {totalPrice} ৳
+            </div>
+          </Col>
+        </Row>
         <Row>
           <Col span={2} offset={11}>
             <Button theme="dark" style={{ marginTop: "20px" }}>

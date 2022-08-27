@@ -22,7 +22,6 @@ function HomeBody() {
     if (status === "authenticated") {
       const { token } = session;
       const checkSecret = async () => {
-        console.log({ token });
         const res = await fetch("/api/checkSecret", {
           method: "POST",
           body: JSON.stringify({ token }),

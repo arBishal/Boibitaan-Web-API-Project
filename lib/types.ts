@@ -30,7 +30,7 @@ export type BankAccount = {
 };
 
 export type Book = {
-  id: number | string;
+  id: number;
   name: string;
   author: string;
   price: number;

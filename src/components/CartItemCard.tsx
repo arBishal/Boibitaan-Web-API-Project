@@ -4,14 +4,27 @@ import Image from "next/image";
 import CartItemCardStyle from "./cartItemCard.module.css";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import Counter from "../ui-base-components/Counter";
-import { Book } from "../../lib/types";
+import { Book, Cart } from "../../lib/types";
 
-const CartItemCard = ({ image, name, author, price }: Partial<Book>) => {
+const CartItemCard = ({
+  id,
+  image,
+  name,
+  author,
+  price,
+  cart,
+  setCart,
+}: {
+  cart: Cart;
+  setCart: React.Dispatch<React.SetStateAction<Cart>>;
+} & Partial<Book>) => {
+  const [counter, setCounter] = useState<number>(1);
   return (
     <div className={CartItemCardStyle.cartItem}>
       <div className={CartItemCardStyle.itemImage}>
         <Image
-          src={ process.env.NEXT_PUBLIC_FIREBASE_STORAGE_PREFIX + image}
+          // @ts-ignore
+          src={process.env.NEXT_PUBLIC_FIREBASE_STORAGE_PREFIX + image}
           alt="item1"
           height="135vh"
           width="90vh"
@@ -21,13 +34,21 @@ const CartItemCard = ({ image, name, author, price }: Partial<Book>) => {
       <div className={CartItemCardStyle.itemInfo}>
         <p className={CartItemCardStyle.infoText}>নাম: {name}</p>
         <p className={CartItemCardStyle.infoText}>লেখক: {author}</p>
-        <p className={CartItemCardStyle.infoText}>মূল্য: {price}৳</p>
+        <p className={CartItemCardStyle.infoText}>মূল্য: {price}</p>
       </div>
       <div className={CartItemCardStyle.itemCounter}>
-        <Counter></Counter>
+        <Counter id={id} cart={cart} setCart={setCart} />
       </div>
       <div className={CartItemCardStyle.itemRemove}>
         <Button
+          onClick={() => {
+            setCart((prevCart) => {
+              const newCart = JSON.parse(JSON.stringify(prevCart));
+              newCart[id].amount = 0;
+              localStorage.setItem("cart", JSON.stringify(newCart));
+              return newCart;
+            });
+          }}
           theme="remove"
           style={{ marginTop: "5px", marginBottom: "10px" }}
         >

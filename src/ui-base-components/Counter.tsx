@@ -2,38 +2,54 @@ import React, { useState } from "react";
 import Button from "../ui-base-components/Button";
 import MinusCircleOutlined from "@ant-design/icons/lib/icons/MinusCircleOutlined";
 import PlusCircleOutlined from "@ant-design/icons/lib/icons/PlusCircleOutlined";
+import { Cart } from "../../lib/types";
 
-const Counter = () => {
-    const [counter, setCounter] = useState<number>(1);
+type CounterProps = {
+  id: number;
+  cart: Cart;
+  setCart: React.Dispatch<React.SetStateAction<Cart>>;
+};
 
-    const increase = () => {
-        setCounter(count => count + 1);
-      };
+const Counter = ({ id, cart, setCart }: CounterProps) => {
+  const increase = () => {
+    setCart((prevCart) => {
+      const newCart = JSON.parse(JSON.stringify(prevCart));
+      newCart[id].amount++;
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      return newCart;
+    });
+  };
 
-      const decrease = () => {
-        if (counter > 1) {
-          setCounter(count => count - 1);
-        }
-      };
+  const decrease = () => {
+    if (cart[id].amount > 1) {
+      setCart((prevCart) => {
+        const newCart = JSON.parse(JSON.stringify(prevCart));
+        newCart[id].amount--;
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        return newCart;
+      });
+    }
+  };
 
-    return (
-        <div>
-            <Button
-          theme="counter"
+  return (
+    <div>
+      <Button
+        theme="counter"
         //   style={{ marginLeft: "5px", marginRight: "5px" }}
-          onClick={decrease}>
-            <MinusCircleOutlined />
-            </Button>
-            {counter}
-            <Button
-          theme="counter"
+        onClick={decrease}
+      >
+        <MinusCircleOutlined />
+      </Button>
+      {cart[id].amount}
+      <Button
+        theme="counter"
         //   style={{ marginLeft: "5px", marginRight: "5px" }}
-          onClick={increase}>
-            <PlusCircleOutlined />
-            </Button>
-        </div>
-    );
-
+        onClick={increase}
+      >
+        <PlusCircleOutlined />
+      </Button>
+    </div>
+  );
 };
 
 export default Counter;

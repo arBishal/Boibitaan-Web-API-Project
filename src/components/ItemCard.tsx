@@ -34,7 +34,7 @@ const ItemCard = ({ id, image, name, author, price }: Partial<Book>) => {
         </p>
         <p className={ItemCardStyle.infoText}>{author}</p>
         <p className={ItemCardStyle.infoText} style={{ marginBottom: "5px" }}>
-          {price}
+          {price + "৳"}
         </p>
       </div>
     </div>

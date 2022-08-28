@@ -6,7 +6,7 @@ import Button from "../ui-base-components/Button";
 import { Book } from "../../lib/types";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
-import AddToCartModal from "./modals/AddToCartModal";
+import { success } from "../ui-base-components/Modal";
 
 function ProductBody({ book }: { book: Book }) {
   const { status } = useSession();
@@ -70,13 +70,12 @@ function ProductBody({ book }: { book: Book }) {
         <Col span={2} offset={11}>
           <Button
             theme="dark"
+            onClick={()=>success('দারুণ!', 'বইটি কার্টে যুক্ত করা হয়েছে।')}
             style={{ marginTop: "20px" }}
-            onClick={onClickHandler}
           >
             {" "}
             কার্টে যুক্ত করুন{" "}
           </Button>
-          <AddToCartModal setOpen={setOpen} open={open}></AddToCartModal>
         </Col>
       </Row>
     </div>

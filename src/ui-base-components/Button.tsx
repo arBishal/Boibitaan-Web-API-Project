@@ -1,5 +1,6 @@
 import { Button as AntDButton, ButtonProps as AntButtonProps } from "antd";
 import "antd/dist/antd.css";
+import { useState } from "react";
 import buttonstyle from "./button.module.css";
 
 type ButtonProps = Partial<
@@ -25,8 +26,27 @@ const getButtonClassName = (theme: string) => {
 
 const Button = ({ theme = "dark", ...props }: ButtonProps) => {
   const className: string = getButtonClassName(theme);
+
+  const [loadings, setLoadings] = useState<boolean[]>([]);
+
+  const enterLoading = (index: number) => {
+    setLoadings(prevLoadings => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+
+    setTimeout(() => {
+      setLoadings(prevLoadings => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };
+  
   return (
-    <AntDButton className={buttonstyle[className]} {...props}></AntDButton>
+    <AntDButton className={buttonstyle[className]} loading={loadings[0]} onClick={() => enterLoading(0)} {...props}></AntDButton>
   );
 };
 

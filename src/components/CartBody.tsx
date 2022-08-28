@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Row, Col } from "antd";
 import CartBodyStyle from "./cartBody.module.css";
@@ -11,9 +6,9 @@ import { Cart } from "../../lib/types";
 
 import Button from "../ui-base-components/Button";
 import CartItemCard from "./CartItemCard";
+import Router from "next/router";
 
 function CartBody() {
-  console.log("CART body");
   const [cart, setCart] = useState<Cart>({});
 
   useEffect(() => {
@@ -49,7 +44,7 @@ function CartBody() {
   if (!cart || totalBooks(cart) === 0) {
     return noBook;
   }
-  
+
   let bookList: (string | number)[] = Object.keys(cart);
 
   const totalPrice: number = Number(
@@ -99,7 +94,13 @@ function CartBody() {
         </Row>
         <Row>
           <Col span={2} offset={11}>
-            <Button theme="dark" style={{ marginTop: "20px" }}>
+            <Button
+              onClick={() => {
+                Router.push("/checkout");
+              }}
+              theme="dark"
+              style={{ marginTop: "20px" }}
+            >
               {" "}
               অর্ডার করুন{" "}
             </Button>

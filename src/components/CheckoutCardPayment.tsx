@@ -1,35 +1,57 @@
 import React, { useState } from "react";
 import CheckoutBodyStyle from "./checkoutBody.module.css";
 import InputText from "../ui-base-components/InputText";
-import Button from "../ui-base-components/Button";
+import InputPassword from "../ui-base-components/InputPassword";
+import { PurchaceRequest } from "../../lib/types";
 
-const CheckoutCardPayment = () => {
-  const [name, setName] = useState<string>("");
-  const [contact, setContact] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [session, serSession] = useState<boolean>(true);
-
-  return session ? (
+const CheckoutCardPayment = ({
+  accountNumber,
+  secretKey,
+  setPurchaceRequest,
+}: {
+  accountNumber: number;
+  secretKey: string;
+  setPurchaceRequest: React.Dispatch<
+    React.SetStateAction<PurchaceRequest | undefined>
+  >;
+}) => {
+  const handleChange = (e: { target: { id: string; value: string } }) => {
+    const { id, value } = e.target;
+    setPurchaceRequest((prev) => {
+      const newPurchaceReq: PurchaceRequest = JSON.parse(JSON.stringify(prev));
+      // @ts-ignore
+      newPurchaceReq.clientInfo[id] = value;
+      return newPurchaceReq;
+    });
+  };
+  return (
     <div className={CheckoutBodyStyle.checkoutInfoCard}>
       <div className={CheckoutBodyStyle.titleStyle}>
         <p
           style={{ marginBottom: "3px", fontWeight: "bold", fontSize: "16px" }}
         >
-          {" "}
-          লেনদেন সম্পর্কিত তথ্যাবলি{" "}
+          লেনদেন সম্পর্কিত তথ্যাবলি
         </p>
       </div>
       <div className={CheckoutBodyStyle.inputStyle}>
         <p style={{ marginBottom: "3px" }}> ব্যাংক অ্যাকাউন্ট </p>
-        <InputText placeholder={name}></InputText>
+        <InputText
+          id="accountNumber"
+          placeholder={"ব্যাংক অ্যাকাউন্ট"}
+          value={accountNumber}
+          onChange={handleChange}
+        ></InputText>
       </div>
       <div className={CheckoutBodyStyle.inputStyle}>
         <p style={{ marginBottom: "3px" }}> গোপন নাম্বার </p>
-        <InputText placeholder={contact}></InputText>
+        <InputPassword
+          id="secretKey"
+          placeholder={"গোপন নাম্বার"}
+          value={secretKey}
+          onChange={handleChange}
+        ></InputPassword>
       </div>
     </div>
-  ) : (
-    <></>
   );
 };
 

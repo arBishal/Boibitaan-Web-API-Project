@@ -8,7 +8,7 @@ export default function CheckoutModal({ setOpen, open, title, text }) {
   const router = useRouter();
   const handleClick = () => {
     setOpen(false);
-    router.push("/")
+    // router.push("/")
   };
 
   return (

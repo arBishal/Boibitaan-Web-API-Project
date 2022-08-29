@@ -14,7 +14,14 @@
   align-items: center;
   justify-content: center;
   height: auto;
+}
 
+.itemLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 15px;
 }
 
 .itemInfo {

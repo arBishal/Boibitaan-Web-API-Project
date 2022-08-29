@@ -9,7 +9,7 @@ import authStyle from "../../styles/auth.module.css";
 
 const ItemCard = ({ id, image, name, author, price }: Partial<Book>) => {
   const router = useRouter();
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // if (loading) {
   //   return (
   //     <div className={authStyle.authPage}>
@@ -17,16 +17,39 @@ const ItemCard = ({ id, image, name, author, price }: Partial<Book>) => {
   //     </div>
   //   );
   // }
-  return (
+  return loading ? (
+    <div>
+      <div
+        className={ItemCardStyle.item}
+        onClick={() => {
+          setLoading(true);
+          router.push(`/product/${id}`);
+        }}
+      >
+        <div className={ItemCardStyle.itemLoader}>
+          <Loading/>
+        </div>
+        <div className={ItemCardStyle.itemInfo}>
+          <p className={ItemCardStyle.infoText} style={{ fontWeight: "bold" }}>
+            {name}
+          </p>
+          <p className={ItemCardStyle.infoText}>{author}</p>
+          <p className={ItemCardStyle.infoText} style={{ marginBottom: "5px" }}>
+            {price + "৳"}
+          </p>
+        </div>
+      </div>
+    </div>
+  ) : (
     <div
       className={ItemCardStyle.item}
       onClick={() => {
-        // setLoading(true);
+        setLoading(true);
         router.push(`/product/${id}`);
       }}
     >
       <div className={ItemCardStyle.itemImage}>
-        <Image src={image} alt="item1" height="135vh" width="90vh" />
+        <Image src={image} alt="item" height="135vh" width="90vh" />
       </div>
       <div className={ItemCardStyle.itemInfo}>
         <p className={ItemCardStyle.infoText} style={{ fontWeight: "bold" }}>

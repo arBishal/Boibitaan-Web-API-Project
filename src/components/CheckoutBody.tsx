@@ -82,7 +82,11 @@ function CheckoutBody() {
   }, [status]);
 
   if (status === "loading" || !purchaceRequest) {
-    return <Loading />;
+    return (
+      <div style={{display:"flex", alignItems:"center", justifyContent:"center", margin:"50vh"}}>
+        <Loading />
+      </div>
+    );
   }
 
   return (

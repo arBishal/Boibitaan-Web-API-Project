@@ -125,7 +125,9 @@ const ProfileInfoCard = () => {
       </div>
     </div>
   ) : (
-    <Loading />
+    <div style={{marginTop:"38vh"}}>
+      <Loading />
+    </div>
   );
 };
 

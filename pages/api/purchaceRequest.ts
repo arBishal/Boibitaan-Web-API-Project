@@ -31,7 +31,6 @@ export default async function handler(
           amount: totalPrice,
           secretKey: clientInfo.secretKey,
         };
-        console.log("Calling bank");
 
         const { verdict, message }: TransactionResponse =
           await transactionRequest(transaction1);

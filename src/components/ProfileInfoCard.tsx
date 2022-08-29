@@ -24,7 +24,6 @@ const ProfileInfoCard = () => {
   const handleClick = async () => {
     if (status === "authenticated" && user) {
       try {
-        console.log(user);
         const { token } = session;
         const client = useApollo(token);
         const res = await client.mutate({

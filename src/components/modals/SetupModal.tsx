@@ -27,7 +27,6 @@ export default function SetupModal({ open, setOpen }: SetupModaProps) {
           },
         });
         const { status, message } = await res.json();
-        console.log({ status, message });
         if (status) {
           setOpen(false);
           alert("Successfully Added!");
@@ -42,9 +41,6 @@ export default function SetupModal({ open, setOpen }: SetupModaProps) {
 
   const handleClick = () => {
     const accNo = Number(accountNumber);
-    console.log(accountNumber);
-    console.log(accNo);
-    console.log(!!secret);
     if (!!accNo && !!secret && secret !== "") {
       console.log("clicked");
       updateCredential(accNo, secret);

@@ -49,7 +49,6 @@ function CartBody() {
 
   const totalPrice: number = Number(
     bookList.reduce((total, id) => {
-      console.log(cart[id].book.price);
       return Number(total) + cart[id].amount * cart[id].book.price;
     }, 0)
   );

@@ -17,7 +17,6 @@ function CheckoutBody() {
   const { data: session, status } = useSession();
 
   const handleClick = async () => {
-    console.log("Start");
     console.log(purchaceRequest);
     if (status === "authenticated") {
       const { token } = session;
@@ -29,8 +28,6 @@ function CheckoutBody() {
         },
       });
       const body = await res.json();
-      console.log(body.message);
-      alert("end");
     }
     success('দারুণ!', 'অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।');
   };
@@ -64,7 +61,7 @@ function CheckoutBody() {
             suplier: cart[id].book.supplier,
           };
         });
-        console.log({ products });
+        
         setPurchaceRequest({
           clientInfo: {
             id: user.id,

@@ -4,20 +4,19 @@ import { Modal as AntdModal } from "antd";
 
 type ModalProps = React.ComponentProps<typeof AntdModal> & {};
 
-export const error = (title, content) => {
+export const error = (title: string, content: string) => {
   AntdModal.error({
     title: title,
     content: content,
-    okText: 'ঠিক আছে'
+    okText: "ঠিক আছে",
   });
 };
 
-
-export const success = (title, content) => {
+export const success = (title: string, content: string) => {
   AntdModal.success({
     title: title,
     content: content,
-    okText: 'ঠিক আছে',
+    okText: "ঠিক আছে",
   });
 };
 

@@ -4,7 +4,7 @@ import CheckoutBodyStyle from "./checkoutBody.module.css";
 import CheckoutCardInfo from "./CheckoutCardInfo";
 import CheckoutCardPayment from "./CheckoutCardPayment";
 import Button from "../ui-base-components/Button";
-import CheckoutModal from "./modals/CheckoutModal";
+import { success } from "../ui-base-components/Modal";
 import { useSession } from "next-auth/react";
 import { Cart, PurchaceRequest, User } from "../../lib/types";
 import { useApollo } from "../../lib/apollo-client";
@@ -32,8 +32,7 @@ function CheckoutBody() {
       console.log(body.message);
       alert("end");
     }
-
-    setOpen(true);
+    success('দারুণ!', 'অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।');
   };
 
   useEffect(() => {
@@ -120,12 +119,6 @@ function CheckoutBody() {
             সম্পন্ন করুন
           </Button>
         </Col>
-        <CheckoutModal
-          setOpen={setOpen}
-          open={open}
-          title="অর্ডার সফল হয়েছে!"
-          text="অর্ডারটি হাতে পাবার জন্য দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। আমাদের সাথেই থাকুন। ধন্যবাদ।"
-        ></CheckoutModal>
       </Row>
     </div>
   );

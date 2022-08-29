@@ -29,7 +29,7 @@ function ProductBody({ book }: { book: Book }) {
         }
         localStorage.setItem("cart", JSON.stringify(cartObject));
       }
-      setOpen(true);
+      success('দারুণ!', 'বইটি কার্টে যুক্ত করা হয়েছে।');
     } else if (status === "unauthenticated") {
       Router.push("/auth/signin");
     } else {
@@ -70,7 +70,7 @@ function ProductBody({ book }: { book: Book }) {
         <Col span={2} offset={11}>
           <Button
             theme="dark"
-            onClick={()=>success('দারুণ!', 'বইটি কার্টে যুক্ত করা হয়েছে।')}
+            onClick={onClickHandler}
             style={{ marginTop: "20px" }}
           >
             {" "}

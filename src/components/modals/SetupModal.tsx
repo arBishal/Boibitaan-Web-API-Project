@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../../ui-base-components/Button";
 import InputText from "../../ui-base-components/InputText";
 import Modal from "../../ui-base-components/Modal";
+import {success} from "../../ui-base-components/Modal";
 
 type SetupModaProps = {
   open: boolean;
@@ -48,11 +49,11 @@ export default function SetupModal({ open, setOpen }: SetupModaProps) {
       console.log("clicked");
       updateCredential(accNo, secret);
     }
-
-    // setOpen(false);
+    success('দারুণ!', 'কাজটি সফল হয়েছে।')
+    setOpen(false);
   };
   const handleCancel = () => {
-    setOpen(false);
+    //setOpen(false);
   };
 
   return (

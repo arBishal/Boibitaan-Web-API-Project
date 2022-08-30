@@ -10,7 +10,6 @@ import { success } from "../ui-base-components/Modal";
 
 function ProductBody({ book }: { book: Book }) {
   const { status } = useSession();
-  const [open, setOpen] = useState<boolean>(false);
 
   const onClickHandler = () => {
     if (status === "authenticated") {
@@ -29,7 +28,7 @@ function ProductBody({ book }: { book: Book }) {
         }
         localStorage.setItem("cart", JSON.stringify(cartObject));
       }
-      success('দারুণ!', 'বইটি কার্টে যুক্ত করা হয়েছে।');
+      success("দারুণ!", "বইটি কার্টে যুক্ত করা হয়েছে।");
     } else if (status === "unauthenticated") {
       Router.push("/auth/signin");
     } else {

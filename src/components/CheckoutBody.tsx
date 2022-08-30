@@ -10,9 +10,9 @@ import { Cart, PurchaceRequest, PurchaceResponse, User } from "../../lib/types";
 import { useApollo } from "../../lib/apollo-client";
 import { getUserDetails } from "../../lib/hasura_query";
 import Loading from "./Loading";
+import Router from "next/router";
 
 function CheckoutBody() {
-  const [open, setOpen] = useState<boolean>(false);
   const [purchaceRequest, setPurchaceRequest] = useState<PurchaceRequest>();
   const { data: session, status } = useSession();
 
@@ -34,6 +34,7 @@ function CheckoutBody() {
           "দারুণ!",
           "অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।"
         );
+        Router.push("/");
       } else {
         // @ts-ignore
         error("দুঃক্ষিত", message);
@@ -92,7 +93,14 @@ function CheckoutBody() {
 
   if (status === "loading" || !purchaceRequest) {
     return (
-      <div style={{display:"flex", alignItems:"center", justifyContent:"center", margin:"50vh"}}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "50vh",
+        }}
+      >
         <Loading />
       </div>
     );

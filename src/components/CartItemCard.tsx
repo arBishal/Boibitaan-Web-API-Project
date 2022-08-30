@@ -42,8 +42,9 @@ const CartItemCard = ({
         <div>
           <Counter id={id} cart={cart} setCart={setCart} />
         </div>
-        <div style={{marginRight: "10px"}}>
+        <div style={{ marginRight: "10px" }}>
           <Button
+            lock
             onClick={() => {
               setCart((prevCart) => {
                 const newCart = JSON.parse(JSON.stringify(prevCart));

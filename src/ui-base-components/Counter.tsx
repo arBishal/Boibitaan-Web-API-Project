@@ -35,6 +35,7 @@ const Counter = ({ id, cart, setCart }: CounterProps) => {
     <div>
       <Button
         theme="counter"
+        lock
         //   style={{ marginLeft: "5px", marginRight: "5px" }}
         onClick={decrease}
       >
@@ -42,6 +43,7 @@ const Counter = ({ id, cart, setCart }: CounterProps) => {
       </Button>
       {cart[id].amount}
       <Button
+        lock
         theme="counter"
         //   style={{ marginLeft: "5px", marginRight: "5px" }}
         onClick={increase}

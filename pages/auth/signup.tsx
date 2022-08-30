@@ -6,6 +6,8 @@ import Image from "next/image";
 import landinglogo from "../../public/logo/logolanding.png";
 import Button from "../../src/ui-base-components/Button";
 import { sha256 } from "js-sha256";
+import { error, success } from "../../src/ui-base-components/Modal";
+import Router from "next/router";
 
 interface SignUpInfoType {
   email: string;
@@ -62,9 +64,13 @@ function SignUp() {
       });
       if (response.status === 200) {
         console.log(await response.json());
+        success("দারুণ!", "কাজটি সফল হয়েছে।");
+        Router.push("/auth/signin");
+      } else {
+        error("দুক্ষিত", response.message);
       }
     } else {
-      alert(result.message);
+      error("দুক্ষিত", result.message);
     }
   }, []);
 

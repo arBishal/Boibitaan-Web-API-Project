@@ -4,9 +4,9 @@ import CheckoutBodyStyle from "./checkoutBody.module.css";
 import CheckoutCardInfo from "./CheckoutCardInfo";
 import CheckoutCardPayment from "./CheckoutCardPayment";
 import Button from "../ui-base-components/Button";
-import { success } from "../ui-base-components/Modal";
+import { error, success } from "../ui-base-components/Modal";
 import { useSession } from "next-auth/react";
-import { Cart, PurchaceRequest, User } from "../../lib/types";
+import { Cart, PurchaceRequest, PurchaceResponse, User } from "../../lib/types";
 import { useApollo } from "../../lib/apollo-client";
 import { getUserDetails } from "../../lib/hasura_query";
 import Loading from "./Loading";
@@ -27,9 +27,18 @@ function CheckoutBody() {
           "Content-type": "application/json; charset=UTF-8",
         },
       });
-      const body = await res.json();
+      const { verdict, message }: PurchaceResponse = await res.json();
+      if (verdict) {
+        localStorage.setItem("cart", "{}");
+        success(
+          "দারুণ!",
+          "অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।"
+        );
+      } else {
+        // @ts-ignore
+        error("দুঃক্ষিত", message);
+      }
     }
-    success('দারুণ!', 'অর্ডারটি সফল হয়েছে। দয়া করে ৫-৭ কার্যদিবস পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।');
   };
 
   useEffect(() => {
@@ -61,7 +70,7 @@ function CheckoutBody() {
             suplier: cart[id].book.supplier,
           };
         });
-        
+
         setPurchaceRequest({
           clientInfo: {
             id: user.id,

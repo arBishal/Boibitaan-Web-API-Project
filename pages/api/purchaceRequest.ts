@@ -63,14 +63,14 @@ export default async function handler(
                 products,
                 amount: totalPrice,
               };
-              return res.status(200).json(purchaceResponse);
+              return res.status(200).json({ verdict: true, purchaceResponse });
             }
             return res
               .status(200)
               .json({ verdict: false, message: "Failed To Reach Supplier!" });
           }
         } else {
-          return res.status(200).json({verdict: false, message});
+          return res.status(200).json({ verdict: false, message });
         }
       } catch (err) {
         console.log(err);

@@ -7,10 +7,15 @@ import { Cart } from "../../lib/types";
 import Button from "../ui-base-components/Button";
 import CartItemCard from "./CartItemCard";
 import Router from "next/router";
+import Loading from "./Loading";
 
 function CartBody() {
   const [cart, setCart] = useState<Cart>({});
+  const [loading, setLoading] = useState<boolean>(false);
 
+  if (loading) {
+    return <Loading />;
+  }
   useEffect(() => {
     setCart(
       JSON.parse((localStorage.getItem("cart")?.toString() as string) || `{}`)

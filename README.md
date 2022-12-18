@@ -4,7 +4,7 @@ This is the implementation of an academic project to demonstrate the workings of
 In this project, we have developed an e-commerce platform where users can browse books. Buy one by making payments through the bank if they like to do so. The backend APIs manages the interactions between users, bank and the supplier.
 
 ## Technologies We've Used
-Mainly this is a Next.js web-app. We've used javascript, typescript. For frontend styling, we've used CSS and AntDesign packages.
+Mainly this is a Next.js web-app. We've used typescript. For frontend styling, we've used CSS and AntDesign packages.
 
 ## Visual
 Some screenshots will be soon added for your convenience!

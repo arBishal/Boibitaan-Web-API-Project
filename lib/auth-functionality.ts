@@ -19,13 +19,13 @@ export const checkCredential: (credential: CredentialType) => Promise<{
     const { data } = await client.mutate({
       mutation: checkAccountWithEmailPassHash(email, passHash),
     });
-    
+
     const res = { ok: true, data: null };
-    
+
     if (data.user.length) {
       res.data = data.user[0];
     }
-    
+
     return res;
   } catch (err) {
     return { ok: false, message: err };

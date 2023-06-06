@@ -4,7 +4,7 @@ const Loading = () => {
   return (
     <ReactLoading
       type="spinningBubbles"
-      color="#4f9fa8"
+      color="#1890ff"
       height={100}
       width={100}
     />

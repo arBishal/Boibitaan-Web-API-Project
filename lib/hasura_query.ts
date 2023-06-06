@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { User } from "./types";
 
 export const upsertUserByEmail = (
   email: string,
@@ -53,6 +54,124 @@ export const getAllBooks = () => {
         publisher
         quantity
         supplier
+      }
+    }
+  `;
+};
+
+export const getBookById = (id: string) => {
+  return gql`
+    query MyQuery {
+      books_by_pk(id: ${id}) {
+        id
+        image
+        name
+        price
+        publisher
+        quantity
+        sale
+        supplier
+        description
+        category
+        author
+      }
+    }
+  `;
+};
+
+export const getAllBookId = () => {
+  return gql`
+    query MyQuery {
+      books {
+        id
+      }
+    }
+  `;
+};
+
+export const getUserDetails = () => {
+  return gql`
+    query MyQuery {
+      user {
+        address
+        accountNumber
+        created_at
+        email
+        id
+        name
+        phone
+        secretKey
+      }
+    }
+  `;
+};
+
+export const updateUserInfo = ({
+  id,
+  name,
+  phone,
+  accountNumber,
+  address,
+  email,
+  secretKey,
+}: User) => {
+  return gql`
+    mutation MyMutation {
+      update_user(
+        _set: {
+          address: "${address}"
+          name: "${name}"
+          phone: "${phone}"
+          email: "${email}"
+          accountNumber: ${accountNumber}
+          secretKey: "${secretKey}"
+        }
+        where: { id: { _eq: ${id} } }
+      ) {
+        affected_rows
+        returning {
+          accountNumber
+          address
+          created_at
+          email
+          id
+          name
+          phone
+        }
+      }
+    }
+  `;
+};
+
+export const getUserSecrets = (id: number) => {
+  return gql`
+    query MyQuery {
+      user(where: { id: { _eq: ${id} } }) {
+        accountNumber
+        passHash
+        secretKey
+      }
+    }
+  `;
+};
+
+export const updateUserCredential = (
+  id: number,
+  accountNumber: number,
+  secretKey: string
+) => {
+  return gql`
+    mutation MyMutation {
+      update_user(
+        where: { id: { _eq: ${id} } }
+        _set: { accountNumber: ${accountNumber}, secretKey: "${secretKey}" }
+      ) {
+        affected_rows
+        returning {
+          id
+          accountNumber
+          secretKey
+        }
       }
     }
   `;

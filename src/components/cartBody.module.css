@@ -2,9 +2,9 @@
     display: "flex";
     align-items: "center";
     justify-content: "center";
-    margin-top: 65px;
+    margin-top: 12vh;
     background-color: white;
-    height: auto;
+    min-height: 88vh;
     top: 100px;
   }
 
@@ -14,3 +14,20 @@
     background-color: white;
     margin-top: 25px;
   }
+
+  .cartText {
+    margin-top: 25px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  
+.cartAmount {
+  margin-top: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 10px;
+}
